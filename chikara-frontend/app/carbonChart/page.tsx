@@ -1,13 +1,14 @@
+
 'use client'
 import { useEffect } from 'react';
 import { Chart } from 'chart.js';
 import React from 'react';
 
-function LineChart() {
+function CarbonAvoided() {
   useEffect(() => {
-    const emissionChart = document.getElementById('myChart')!;
-    const chartLine = emissionChart.getContext('2d');
-    const myChart = new Chart(chartLine, {
+    const carbonChart = document.getElementById('myChart2')!;
+    const chartLine = carbonChart.getContext('2d');
+    const myChart2 = new Chart(chartLine, {
       type: 'line',
       data: {
         labels: [
@@ -17,22 +18,23 @@ function LineChart() {
         datasets: [
           {
             data: [
-              30000, 30000, 30000, 30000, 30000, 30000,
-              30000, 30000, 30000, 30000, 30000, 30000,
+              13000, 15000, 17000, 11000, 46000, 16000,
+              17000, 14000, 17000, 31000, 13000, 33000,
             ],
-            label: 'Emission Cap',
-            borderColor: '#ff0000',
-            backgroundColor: '#ff0000',
+            label: 'Carbon Avoided',
+            borderColor: '#1BEF0B',
+            backgroundColor: '#1BEF0B',
             fill: false,
+            lineTension: 0,
           },
           {
             data: [
-              13000, 22000, 20000, 11000, 46000, 21000,
-              22000, 14000, 25000, 32000, 13000, 33000,
+              13000, 15000, 20000, 11000, 46000, 19000,
+              19000, 14000, 17000, 31000, 13000, 32000,
             ],
-            label: 'Carbon Emitted',
-            borderColor: '#3cba9f',
-            backgroundColor: '#71d1bd',
+            label: 'Carbon credits earned',
+            borderColor: '#8A23E3',
+            backgroundColor: '#8A23E3',
             fill: false,
             lineTension: 0,
           },
@@ -43,17 +45,17 @@ function LineChart() {
 
   return (
     <>
-      {/* line chart */}
+     
       <h1 className="text-center  mx-auto mt-20 text-3xl font-semibold">
-      Carbon emitted and carbon limit against time
+      Carbon avoided and carbon credit against time
       </h1>
       <div className="w-[1100px] h-[600px] flex mx-auto my-auto">
         <div className="border pt-0  w-full h-fit my-auto shadow-xl">
-          <canvas id="myChart" className="w-full h-full"></canvas>
+          <canvas id="myChart2" className="w-full h-full"></canvas>
         </div>
       </div>
     </>
   );
 }
 
-export default LineChart;
+export default CarbonAvoided;

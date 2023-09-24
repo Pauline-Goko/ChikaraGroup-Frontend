@@ -1,12 +1,12 @@
 import React from 'react';
-import LineChart from '../Charts';
-import LineChart2 from '../Charts/index2';
+import CarbonEmitted from '../limitChart/page';
+import CarbonAvoided from '../carbonChart/page';
 
 const Emission = () => {
   return (
     <div className=" h-screen bg-white">
-        < LineChart />
-        {/* <LineChart2 /> */}
+        < CarbonEmitted />
+        < CarbonAvoided />
 
 
 
