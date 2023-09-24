@@ -132,7 +132,7 @@ const Login = () => {
             Sign In
           </button>
         </form>
-        <p className="mt-4 text-gray-400 text-center font-Poppins text-lg">
+        <p className="mt-4 text-gray-400 text-center font-Poppins text-lg -ml-12 ">
           Don't have an account? <a href="/Signup" className="text-teal-300 font-bold">Sign Up</a>
         </p>
       </div>
