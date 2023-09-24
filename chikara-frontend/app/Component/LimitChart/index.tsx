@@ -2,8 +2,15 @@
 import { useEffect } from 'react';
 import { Chart } from 'chart.js';
 import React from 'react';
+import { useRouter } from 'next/navigation';
+
+
 
 function CarbonEmitted() {
+  const router = useRouter()
+  const emission = () => {
+    ("/CarbonChart")
+  }
   useEffect(() => {
     const emissionChart = document.getElementById('myChart')!;
     const chartLine = emissionChart.getContext('2d');

@@ -1,10 +1,13 @@
-
 'use client'
 import { useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Chart } from 'chart.js';
 import React from 'react';
+import CarbonEmitted from '../Component/LimitChart';
+import Link from 'next/link';
 
 function CarbonAvoided() {
+ 
   useEffect(() => {
     const carbonChart = document.getElementById('myChart2')!;
     const chartLine = carbonChart.getContext('2d');

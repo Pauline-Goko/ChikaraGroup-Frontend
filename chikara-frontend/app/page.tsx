@@ -1,17 +1,13 @@
 import Image from 'next/image'
-import CarbonAvoided from './carbonChart/page'
-import CarbonEmitted from './limitChart/page'
+import CarbonEmitted from './Component/LimitChart'
 
 
 export default function Home() {
   return (
     <div>
     <CarbonEmitted />
-    <CarbonAvoided />
-   
-   
     </div>
    
     
-  )
+   )
 }
