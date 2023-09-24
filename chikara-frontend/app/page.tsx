@@ -1,11 +1,12 @@
-import Image from 'next/image'
-import CarbonEmitted from './Component/LimitChart'
+import Signup from "./Signup/page";
+
 
 
 export default function Home() {
   return (
     <div>
-    <CarbonEmitted />
+     <Signup/>
+   
     </div>
    
     
