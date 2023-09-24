@@ -47,10 +47,10 @@ function CarbonAvoided() {
   return (
     <>
      
-      <h1 className="text-center  mx-auto mt- text-3xl font-semibold">
+      <h1 className="text-center  mx-auto mt-10 text-3xl font-semibold">
       Carbon avoided and carbon credit against time
       </h1>
-      <div className="w-[1613px] h-[589px] flex mx-auto my-auto">
+      <div className="w-[1200px] h-[600px] flex mx-auto my-auto" >
         <div className="border pt-0  w-full h-fit my-auto shadow-xl mt-10">
           <canvas id="myChart2" className="w-full h-full"></canvas>
         </div>
