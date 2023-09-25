@@ -20,7 +20,7 @@ const Profile: React.FC = () => {
                 className="w-60 h-auto rounded-md ml-12 mt-20 lg:mb-10"
               />
 
-              <span className="absolute top-16 left-72 text-black font-bold text-3xl mt-20 gap-4 lg:absolute lg:left-72 lg:mt-20 lg:flex lg:flex-col">
+              <span className="absolute top-16 left-72 text-black font-bold text-3xl mt-20 gap-4 lg:absolute lg:left-80 lg:mt-20 lg:flex lg:flex-col">
                 Toyota Kenya
               </span>
             </div>
