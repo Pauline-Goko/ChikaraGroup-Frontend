@@ -161,7 +161,7 @@ const Signup = () => {
             </label>
             <div className="relative">
               <input
-                type={showPassword ? "text" : "password"} // Toggle input type
+                type={showPassword ? "text" : "password"} 
                 id="password"
                 name="password"
                 className="mt-1 p-2 border border-[#BCE2E3] rounded focus:outline-none focus:border-primary text-gray-400 font-Poppins text-xl font-normal"
@@ -184,7 +184,7 @@ const Signup = () => {
             </label>
             <div className="relative">
               <input
-                type={showPassword ? "text" : "password"} // Toggle input type
+                type={showPassword ? "text" : "password"} 
                 id="password"
                 name="password"
                 className="mt-1 p-2 border border-[#BCE2E3] rounded focus:outline-none focus:border-primary text-gray-400 font-Poppins text-xl font-normal"

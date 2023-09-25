@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import 'tailwindcss/tailwind.css'; // Import Tailwind CSS styles
+import 'tailwindcss/tailwind.css'; 
 
 type FormData = {
   companyName: string;
