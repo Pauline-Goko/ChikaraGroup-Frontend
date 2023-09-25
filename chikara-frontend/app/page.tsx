@@ -1,11 +1,11 @@
 import Image from 'next/image'
-import CarbonEmitted from './Component/LimitChart'
+import Frames from './Component/vehicledetails/vehicles'
 
 
 export default function Home() {
   return (
     <div>
-    <CarbonEmitted />
+    <Frames/>
     </div>
    
     
