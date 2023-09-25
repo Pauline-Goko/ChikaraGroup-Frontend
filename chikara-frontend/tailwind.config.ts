@@ -13,8 +13,29 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        black: '#000',
+        teal: {
+          300: '#0C8283',
+        },
+        'bg-f5f5f5': '#f5f5f5',
+        'border-BCE2E3': '#BCE2E3',
+        primary: '#0C8283',
+        red: {
+          500: '#FF0000',
+        },
+        gray: {
+          400: '#666',
+        },
+        'bg-0C8283': '#0C8283',
+        'bg-0C8283-hover': '#your-hover-color',
+        // Add your custom colors here
+        customColor1: '#ABCDEF',
+        customColor2: '#FEDCBA',
+      },
     },
   },
   plugins: [],
 }
+
 export default config
