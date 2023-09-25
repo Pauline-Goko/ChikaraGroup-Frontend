@@ -89,7 +89,7 @@ const Login = () => {
       </div>
 
       <div className="w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left">
-        <h1 className="mt-8 mb-4 sm:mb-8 text-2xl sm:text-4xl font-Laila text-black -ml-20">
+        <h1 className="mt-8 mb-4 sm:mb-8 text-2xl sm:text-4xl font-Laila text-black -ml-24">
           Welcome <span className="text-[#0C8283] font-Gugi ">Back </span>
         </h1>
         <form className="w-ful">
@@ -132,7 +132,7 @@ const Login = () => {
             Sign In
           </button>
         </form>
-        <p className="mt-4 text-gray-400 text-center font-Poppins text-lg -ml-12 ">
+        <p className="mt-4 text-gray-400 text-center font-Poppins text-lg -ml-16 ">
           Don't have an account? <a href="/Signup" className="text-teal-300 font-bold">Sign Up</a>
         </p>
       </div>
