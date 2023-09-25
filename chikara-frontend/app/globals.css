@@ -1,3 +1,35 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.label {
+    font-size: 20px;
+  }
+  .input{
+    font-size: 16px;
+  }
+
+  .inputs{
+   
+height: 50px;
+padding: 0px 20px;
+align-items: center;
+border-radius: 15px;
+border: 2px solid #BCE2E3;
+background: var(--black-amp-white-white, #FFF);
+
+  }
+
+  .border{
+   
+width: 231px;
+height: 45px;
+padding: 0px 4px;
+border-radius: 12px;
+background: #0C8283;
+
+
+
+  }
+ 

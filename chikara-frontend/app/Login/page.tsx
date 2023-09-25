@@ -73,27 +73,27 @@ const Login = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col sm:flex-row">
-      <div className="hidden sm:flex w-1/2 relative flex items-center justify-center">
+    <div className="w-full  h-screen flex flex-col sm:flex-row  ">
+      <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
           <img src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" />
         </div>
       </div>
 
-      <div className={`w-full sm:w-1/2 bg-bg-f5f5f5 flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left`}>
-        <h1 className={`mt-8 mb-4 sm:mb-8 text-2xl sm:text-4xl font-Laila text-black -ml-24`}>
-          Welcome <span className={`text-teal-300 font-Gugi`}>Back</span>
+      <div className={`w-full sm:w-1/2 bg-bg-f5f5f5 flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left -mt-60  mr-40`}>
+        <h1 className={`mt-8 mr-12 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins  text-black font-extrabold`}>
+          Welcome Back
         </h1>
         <form className="w-ful" onSubmit={handleSubmit}>
           <div className={`mb-4`}>
-            <label htmlFor="email" className={`block text-gray-700 font-medium text-2xl font-Poppins`}>
+            <label htmlFor="email" className={`block text-gray-700 font-medium label font-Poppins `}>
               Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className={`mt-1 p-2 border border-border-BCE2E3 rounded focus:outline-none focus:border-primary text-gray-400 font-Poppins text-xl font-normal`}
+              className={`mt-2 input inputs`}
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleInputChange}
@@ -101,7 +101,7 @@ const Login = () => {
             {errors.email && <p className={`text-red-500 mt-2`}>{errors.email}</p>}
           </div>
           <div className={`mb-4`}>
-            <label htmlFor="password" className={`block text-gray-700 font-medium text-2xl font-normal font-Poppins`}>
+            <label htmlFor="password" className={`block text-gray-700 font-medium label font-Poppins`}>
               Password
             </label>
             <div className="relative">
@@ -109,7 +109,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className={`mt-1 p-2 border border-border-BCE2E3 rounded focus:outline-none focus:border-primary text-gray-400 font-Poppins text-xl font-normal`}
+                className={`mt-2 input inputs`}
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleInputChange}
@@ -119,7 +119,7 @@ const Login = () => {
                 className="absolute inset-y-0 right-0 px-3 py-2"
                 onClick={togglePasswordVisibility}
               >
-                {showPassword ? <FaEyeSlash /> : <FaEye />}
+                 {showPassword ? <FaEye />   : <FaEyeSlash />}
               </button>
             </div>
             {errors.password && <p className={`text-red-500 mt-2`}>{errors.password}</p>}
@@ -131,7 +131,7 @@ const Login = () => {
             Sign In
           </button>
         </form>
-        <p className={`mt-4 text-gray-400 text-center font-Poppins text-lg -ml-16 `}>
+        <p className={`mt-4 -mr-8  text-gray-400 text-center font-Poppins text-lg -ml-16 `}>
           Don't have an account? <a href="/Signup" className={`text-teal-300 font-bold`}>Sign Up</a>
         </p>
       </div>
