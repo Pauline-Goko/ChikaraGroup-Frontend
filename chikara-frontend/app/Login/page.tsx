@@ -50,15 +50,7 @@ const Login = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newErrors: Errors = {};
-    if (formData.companyName.trim() === "") {
-      newErrors.companyName = "Company name is required.";
-    }
-    if (formData.licenseNumber.trim() === "") {
-      newErrors.licenseNumber = "License number is required.";
-    }
-    if (formData.phone.trim() === "") {
-      newErrors.phone = "Phone number is required.";
-    }
+  
     if (formData.email.trim() === "") {
       newErrors.email = "Email is required.";
     } else if (!isValidEmail(formData.email)) {
