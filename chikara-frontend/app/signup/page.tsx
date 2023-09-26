@@ -92,9 +92,6 @@ const Signup = () => {
   
     setErrors(newErrors);
   
-    if (Object.keys(newErrors).length === 0) {
-      console.log("Form data:", formData);
-    }
   };
   
   const isValidEmail = (email: string) => {
@@ -238,7 +235,7 @@ const Signup = () => {
         </form>
 
         <p className="mt-8 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
-          Already have an account? <a href="/Login" className="text-teal-300 font-Poppins font-bold">Sign In</a>
+          Already have an account? <a href="/login" className="text-teal-300 font-Poppins font-bold">Sign In</a>
         </p>
       </div>
     </div>

@@ -1,4 +1,4 @@
-import Signup from "./Signup/page";
+import Signup from "./signup/page";
 
 
 

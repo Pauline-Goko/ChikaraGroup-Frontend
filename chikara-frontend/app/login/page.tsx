@@ -47,11 +47,7 @@ const Login = () => {
     if (!formData.password) {
       newErrors.password = "Password is required.";
     }
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
-      console.log("Form data:", formData);
-    }
+   
   };
 
   const isValidEmail = (email: string) => {
@@ -122,7 +118,7 @@ const Login = () => {
           </button>
         </form>
         <p className={`mt-8 -mr-8  text-gray-400 text-center font-Poppins text-lg -ml-28 label `}>
-          Don't have an account? <a href="/Signup" className={`text-teal-300 font-bold label `}>Sign Up</a>
+          Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label `}>Sign Up</a>
         </p>
       </div>
     </div>
