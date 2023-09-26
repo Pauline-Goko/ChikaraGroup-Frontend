@@ -1,13 +1,21 @@
-import CarbonEmitted from "./Component/LimitChart";
+import CarbonEmitted from "./LimitChart/page";
+import Image from 'next/image';
+import Login from "./login/page";
+import Signup from "./signup/page";
+import Sidebar from './component/Sidebar';
+
+
 
 
 export default function Home() {
   return (
     <div>
+    
    
 
-  <CarbonEmitted/>
+  {/* <CarbonEmitted/> */}
    
+    {/* <Sidebar/> */}
     </div>
    
     
