@@ -1,9 +1,12 @@
-import Signup from "./signup/page";
+import CarbonEmitted from "./Component/LimitChart";
+
 
 export default function Home() {
   return (
     <div>
-      <Signup/>
+   
+
+  <CarbonEmitted/>
    
     </div>
    
