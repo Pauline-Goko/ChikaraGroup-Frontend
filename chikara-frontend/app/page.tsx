@@ -1,11 +1,12 @@
 import Image from 'next/image'
-import CarbonEmitted from './Component/LimitChart'
+
+import Sidebar from './component/Sidebar'
 
 
 export default function Home() {
   return (
     <div>
-    <CarbonEmitted />
+    <Sidebar/>
     </div>
    
     
