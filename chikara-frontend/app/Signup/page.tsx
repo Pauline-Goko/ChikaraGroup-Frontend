@@ -65,43 +65,41 @@ const Signup = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
+  
     const newErrors: Errors = {};
-    if (formData.companyName.trim() === "") {
+    if (!formData.companyName) {
       newErrors.companyName = "Company name is required.";
     }
-    if (formData.licenseNumber.trim() === "") {
+    if (!formData.licenseNumber) {
       newErrors.licenseNumber = "License number is required.";
     }
-    if (formData.phone.trim() === "") {
+    if (!formData.phone) {
       newErrors.phone = "Phone number is required.";
     }
-    if (formData.email.trim() === "") {
+    if (!formData.email) {
       newErrors.email = "Email is required.";
     } else if (!isValidEmail(formData.email)) {
       newErrors.email = "Invalid email address.";
     }
-    if (formData.password.trim() === "") {
+    if (!formData.password) {
       newErrors.password = "Password is required.";
     }
-    if (formData.confirmPassword.trim() === "") {
+    if (!formData.confirmPassword) {
       newErrors.confirmPassword = "Confirm password is required.";
     } else if (formData.password !== formData.confirmPassword) {
       newErrors.confirmPassword = "Passwords do not match.";
     }
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors);
-    } else {
+  
+    setErrors(newErrors);
+  
+    if (Object.keys(newErrors).length === 0) {
       console.log("Form data:", formData);
     }
   };
-
+  
   const isValidEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return email.includes("@");
   };
-
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };

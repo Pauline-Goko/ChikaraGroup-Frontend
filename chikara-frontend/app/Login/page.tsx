@@ -1,29 +1,20 @@
 "use client"
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import 'tailwindcss/tailwind.css'; 
+import 'tailwindcss/tailwind.css';
 
 type FormData = {
-  companyName: string;
-  licenseNumber: string;
-  phone: string;
   email: string;
   password: string;
 };
 
 type Errors = {
-  companyName?: string;
-  licenseNumber?: string;
-  phone?: string;
   email?: string;
   password?: string;
 };
 
 const Login = () => {
   const [formData, setFormData] = useState<FormData>({
-    companyName: "",
-    licenseNumber: "",
-    phone: "",
     email: "",
     password: "",
   });
@@ -48,12 +39,12 @@ const Login = () => {
     e.preventDefault();
     const newErrors: Errors = {};
 
-    if (formData.email.trim() === "") {
+    if (!formData.email) {
       newErrors.email = "Email is required.";
     } else if (!isValidEmail(formData.email)) {
       newErrors.email = "Invalid email address.";
     }
-    if (formData.password.trim() === "") {
+    if (!formData.password) {
       newErrors.password = "Password is required.";
     }
     if (Object.keys(newErrors).length > 0) {
@@ -64,14 +55,12 @@ const Login = () => {
   };
 
   const isValidEmail = (email: string) => {
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    return emailRegex.test(email);
+    return email.includes("@");
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   return (
     <div className="w-full  h-screen flex flex-col sm:flex-row  ">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
@@ -81,19 +70,20 @@ const Login = () => {
       </div>
 
       <div className={`w-full sm:w-1/2 bg-bg-f5f5f5 flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left -mt-60  mr-40`}>
-        <h1 className={`mt-8 mr-12 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins  text-black font-extrabold`}>
+        <h1 className={`mt-8 mr-32 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins  text-black font-extrabold`}>
           Welcome Back
         </h1>
+        <p className=" mb-8 text-gray-400 text-center label "> Enter your email and password to sign in</p>
         <form className="w-ful" onSubmit={handleSubmit}>
           <div className={`mb-4`}>
-            <label htmlFor="email" className={`block text-gray-700 font-medium label font-Poppins `}>
+            <label htmlFor="email" className={`block text-black font-normal label `}>
               Email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              className={`mt-2 input inputs`}
+              className={`mt-2 labels`}
               placeholder="Enter your email"
               value={formData.email}
               onChange={handleInputChange}
@@ -101,7 +91,7 @@ const Login = () => {
             {errors.email && <p className={`text-red-500 mt-2`}>{errors.email}</p>}
           </div>
           <div className={`mb-4`}>
-            <label htmlFor="password" className={`block text-gray-700 font-medium label font-Poppins`}>
+            <label htmlFor="password" className={`block text-black font-normal label `}>
               Password
             </label>
             <div className="relative">
@@ -109,7 +99,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 id="password"
                 name="password"
-                className={`mt-2 input inputs`}
+                className={`mt-2  labels`}
                 placeholder="Enter your password"
                 value={formData.password}
                 onChange={handleInputChange}
@@ -126,13 +116,13 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className={`mt-4 bg-primary text-white py-2 rounded-full w-[231px] h-[45px] hover:bg-opacity-80 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal`}
+            className="mt-8 bg-[#0C8283] text-white py-2  w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal borders"
           >
-            Sign In
+            Sign in
           </button>
         </form>
-        <p className={`mt-4 -mr-8  text-gray-400 text-center font-Poppins text-lg -ml-16 `}>
-          Don't have an account? <a href="/Signup" className={`text-teal-300 font-bold`}>Sign Up</a>
+        <p className={`mt-8 -mr-8  text-gray-400 text-center font-Poppins text-lg -ml-28 label `}>
+          Don't have an account? <a href="/Signup" className={`text-teal-300 font-bold label `}>Sign Up</a>
         </p>
       </div>
     </div>
