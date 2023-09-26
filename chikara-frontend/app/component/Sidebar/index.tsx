@@ -81,22 +81,31 @@ const Sidebar: React.FC = () => {
 
             <span className="capitalize text-xl text-teal-800 ">Overview</span>
           </li>
+
+          <Link href="/LimitChart">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300 cursor-pointer items-center ">
             <FaCreditCard className={`text-white   mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Credits</span>
           </li>
+          </Link>
+          <Link href="/carbonChart">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
             <FaCloud className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Emission</span>
           </li>
+          </Link>
+          <Link href="/">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300 cursor-pointer items-center">
             <FaBus className={`text-white  mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Vehicles</span>
           </li>
+          </Link>
+          <Link href="/">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px- transition-all duration-300 cursor-pointer items-center">
             <FaUser className={`text-white  mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Profiles</span>
           </li>
+          </Link>
           
         </ul>
         
