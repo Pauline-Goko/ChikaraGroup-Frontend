@@ -8,6 +8,7 @@ const ProfileEdit: React.FC = () => {
     <div
       className="bg bg-cover bg-center"
       style={{
+        width: "200vh",
         backgroundImage: "url(/images/Bg-pic.png)",
         height: "30vh",
       }}
