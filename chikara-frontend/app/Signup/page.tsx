@@ -32,7 +32,6 @@ const Signup = () => {
 
   const [errors, setErrors] = useState<Errors>({});
 
-
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
@@ -43,10 +42,25 @@ const Signup = () => {
       ...errors,
       [name]: undefined,
     });
+
     setFormData({
       ...formData,
       [name]: value,
     });
+
+    if (name === "confirmPassword") {
+      if (formData.password !== value) {
+        setErrors({
+          ...errors,
+          confirmPassword: "Passwords do not match.",
+        });
+      } else {
+        setErrors({
+          ...errors,
+          confirmPassword: undefined,
+        });
+      }
+    }
   };
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
