@@ -1,5 +1,5 @@
 import Profile from "./profile/page"
-import CarbonEmitted from "./LimitChart/page";
+import CarbonEmitted from "./limitChart/page";
 import Image from 'next/image';
 import Login from "./login/page";
 import Signup from "./signup/page";
