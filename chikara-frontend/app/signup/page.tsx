@@ -106,7 +106,7 @@ const Signup = () => {
   };
 
   return (
-    <div className="w-full h-screen flex flex-col sm:flex-row ">
+    <div className="grid grid-cols-1 md:grid-cols-2 h-screen" style={{ marginLeft: '1px'}} >
       <div className=" sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
           <img

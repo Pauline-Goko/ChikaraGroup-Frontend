@@ -1,8 +1,10 @@
 'use client'
 import { useEffect } from 'react';
+
 import { Chart } from 'chart.js';
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import Sidebar from '../component/Sidebar';
 
 
 
@@ -51,11 +53,11 @@ function CarbonEmitted() {
   return (
     <>
      
-      <h1 className="text-center  mx-auto mt-10 text-3xl font-semibold">
+      <h1 className="text-center mt-24  mx-auto  text-3xl font-semibold">
       Carbon emitted and carbon limit against time
       </h1>
       <div className="w-[1200px] h-[600px] flex mx-auto my-auto" >
-        <div className="border pt-0  w-full h-fit my-auto shadow-xl mt-10">
+        <div className="border pt-0  w-full h-fit my-auto shadow-xl mt-10" style={{ marginLeft: '80px', marginTop: '40px' }}>
           <canvas id="myChart" className="w-full h-full"></canvas>
         </div>
       </div>
