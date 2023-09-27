@@ -1,10 +1,10 @@
 'use client'
 import React, { useState, useEffect } from "react";
-import vehiclelist from "./vehiclelist";
+import { vehiclelist } from "./Component/vehiclelist";
 import { IoTrashOutline } from 'react-icons/io5';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
-import AddVehicleForm from "./addvehicle";
+import AddVehicleForm from "./Component/Addvehicle";
 
 
 interface VehicleProps{
@@ -16,12 +16,13 @@ interface VehicleProps{
   engineType: string,
   month: string
 }
-const Frames = () => {
-const [vehicles, setVehicle] = useState<VehicleProps[] | null>(null);
+const Vehicles = () => {
+const [vehicles, setVehicle] = useState<VehicleProps[] >([]);
 const [selectedMonth, setSelectedMonth] = useState<string | null>(null);
 const [searchQuery, setSearchQuery] = useState("");
   const [newItem, setNewItem] = useState({
     year: "",
+    vehicleId: "",
     model: "",
     chassisNumber: "",
     ghgEmissions: "",
@@ -29,6 +30,9 @@ const [searchQuery, setSearchQuery] = useState("");
     month: "",
   });
  const [isFormVisible, setIsFormVisible] = useState(false);
+ const [currentPage, setCurrentPage] = useState(1);
+ const itemsPerPage = 4; 
+
 
    const toggleFormVisibility = () => {
     setIsFormVisible(!isFormVisible);
@@ -52,10 +56,10 @@ const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
 
   // search and month filter
   const filteredVehicles = selectedMonth
-  ? (vehicles || []).filter((vehicle) => vehicle.month === selectedMonth &&
+  ? (vehicles).filter((vehicle) => vehicle.month === selectedMonth &&
       vehicle.model.toLowerCase().includes(searchQuery.toLowerCase())
     )
-  : (vehicles || []).filter((vehicle) =>
+  : (vehicles).filter((vehicle) =>
       vehicle.model.toLowerCase().includes(searchQuery.toLowerCase())
     );
 
@@ -74,35 +78,7 @@ const handleMonthChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
   };
 
 
-  const handleAddItem = (event: React.FormEvent) => {
-    event.preventDefault();
-    if (newItem.year && newItem.model && newItem.chassisNumber && newItem.ghgEmissions && newItem.engineType && newItem.month) {
-      setVehicle((prevVehicles) => {
-        if (prevVehicles === null) {
-          return [{ ...newItem, vehicleId: generateUniqueId() }];
-        } else {
-          return [{ ...newItem, vehicleId: generateUniqueId() }, ...prevVehicles];
-        }
-      });
-      setNewItem({
-            year: "",
-            model: "",
-            chassisNumber: "",
-            ghgEmissions: "",
-            engineType: "",
-            month: "",
-          });
-      
-          setIsFormVisible(false); 
-    } else {
-      alert("Please fill out all fields before saving.");
-    }
-  };
-  
-  const generateUniqueId = () => {
-    return `${Date.now()}${Math.floor(Math.random() * 1000)}`;
-  };
-  
+
 // add vehicle details
 // save vehicle details
 const handleSave = () => {
@@ -116,6 +92,7 @@ const handleSave = () => {
     });
     setNewItem({
       year: "",
+      vehicleId: "",
       model: "",
       chassisNumber: "",
       ghgEmissions: "",
@@ -135,6 +112,8 @@ const handleDelete = (vehicleId: string) => {
   setVehicle(updatedVehicles);
 };
 // delete 
+// pages
+const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
 
 // search
     return (
@@ -156,7 +135,7 @@ const handleDelete = (vehicleId: string) => {
 {/* search */}
    {/* filter with months */}
 
-   <select className="ml-10 mb-2" onChange={handleMonthChange} value={selectedMonth || ""}>
+   <select className="ml-10 mb-2" onChange={handleMonthChange} value={selectedMonth?? ""}>
   <option value="">All Months</option>
   {filteredVehicles && filteredVehicles.map((vehicle) => (
     <option key={vehicle.vehicleId} value={vehicle.month}>
@@ -168,15 +147,9 @@ const handleDelete = (vehicleId: string) => {
    {/* filter with months */}
 
 {/* add vehicle details */}
-<AiOutlinePlusCircle onClick={toggleFormVisibility} className="text-darkGreen font-black text-4xl ml-auto mr-64 cursor-pointer hover:opacity-75" />
+          <AiOutlinePlusCircle onClick={toggleFormVisibility} className="text-darkGreen font-black text-4xl ml-auto mr-64 cursor-pointer hover:opacity-75" />
          
-         <AddVehicleForm
-           isVisible={isFormVisible}
-           toggleVisibility={toggleFormVisibility}
-           handleInputChange={handleInputChange}
-           handleSave={handleSave}
-           newItem={newItem}
-         />
+         <AddVehicleForm isVisible={isFormVisible} toggleVisibility={toggleFormVisibility} handleInputChange={handleInputChange} handleSave={handleSave} newItem={newItem} />
 {/* add vehicle details */}
     </div>
     <div className="items-center justify-center">
@@ -194,7 +167,7 @@ const handleDelete = (vehicleId: string) => {
     {/* vehicles lists */}
     <div >
         {filteredVehicles? (
-          filteredVehicles.map((item) => (
+          filteredVehicles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
 <div className="">
 <div className="py-4 px-3">
   <ul key={item.vehicleId} className="flex items-center space-x-44 mx-80 mt-4">
@@ -215,6 +188,21 @@ const handleDelete = (vehicleId: string) => {
         )}
       </div> 
     {/* vehicles lists */}
+{/* pagination */}
+<div className="flex justify-center mt-4">
+        <p className="absolute mr-[71em] mt-3">Page {currentPage} of {totalPages}</p>
+        
+        <button
+          onClick={() => setCurrentPage((prev) => prev > 1 ? prev - 1 : prev)} disabled={currentPage === 1}
+          className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl ml-14 mt-2"> Previous</button>
+
+        <button
+          onClick={() => setCurrentPage((prev) => prev + 1)} disabled={currentPage * itemsPerPage >= (filteredVehicles?.length || 0)}
+           className="text-white text-md px-10 py-2  bg-darkGreen rounded-xl ml-14 mt-2"> Next</button>
+      </div>
+
+{/* pagination */}
+
 
       </div> 
 
@@ -223,4 +211,4 @@ const handleDelete = (vehicleId: string) => {
     )
 }
 
-export default Frames;
+export default Vehicles;

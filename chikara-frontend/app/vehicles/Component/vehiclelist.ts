@@ -1,5 +1,5 @@
 
-const vehiclelist = [
+export const vehiclelist = [
 {
     vehicleId: "1",
     year:"2020",
@@ -110,5 +110,3 @@ const vehiclelist = [
     month: "December"
 }]  
 
-
-export default vehiclelist;

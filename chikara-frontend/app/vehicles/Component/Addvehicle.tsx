@@ -7,6 +7,7 @@ interface AddVehicleFormProps {
   handleSave: () => void;
   newItem: {
     year: string;
+    vehicleId: string,
     model: string;
     chassisNumber: string;
     ghgEmissions: string;
@@ -44,7 +45,7 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({
      </>
      ) : (
       <>
-      <button type="button" className="text-xxl px-10 py-2 bg-gray-300 rounded-xl ml-[302px]" onClick={toggleVisibility}>Cancel </button>
+      <button type="button" className="text-xxl text-gray px-10 py-2 bg-gray-300 rounded-xl ml-[302px]" onClick={toggleVisibility}>Cancel </button>
       <button type="submit" className="text-white text-md px-10 py-2  bg-darkGreen rounded-xl ml-14 mt-4" onChange={handleSave}>Save</button>
       </>
       )}

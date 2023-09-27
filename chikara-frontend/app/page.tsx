@@ -1,13 +1,12 @@
 
-import Frames from './Component/vehicledetails/vehicles'
+import Vehicles from "./vehicles/page"
 
 
 export default function Home() {
   return (
     <div>
-    <Frames/>
+    <Vehicles/>
     </div>
    
-    
    )
 }
