@@ -16,9 +16,27 @@ const config: Config = {
       colors: {
         customGreen: '#0C8283',
         darkGreen: '#035852',
+        black: '#000',
+        teal: {
+          300: '#0C8283',
+        },
+        'bg-f5f5f5': '#f5f5f5',
+        'border-BCE2E3': '#BCE2E3',
+        primary: '#0C8283',
+        red: {
+          500: '#FF0000',
+        },
+        gray: {
+          400: '#666',
+        },
+        'bg-0C8283': '#0C8283',
+        'bg-0C8283-hover': '#your-hover-color',
+        customColor1: '#ABCDEF',
+        customColor2: '#FEDCBA',
       },
     },
   },
   plugins: [],
 }
+
 export default config

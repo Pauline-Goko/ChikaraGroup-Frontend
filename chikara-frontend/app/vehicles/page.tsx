@@ -117,8 +117,8 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
 
 // search
     return (
-      <div>
-<div className="relative mt-20 ml-80">
+      <div className="w-full">
+<div className="relative mt-20 ml-40">
       <input type="text" placeholder="Search..."
              className="py-4 pl-10 pr-80 border rounded-lg border-black font-light focus:outline-none"
              value={searchQuery} onChange={handleSearch} />
@@ -129,7 +129,7 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
 
 <div  className="p-4 max-w-xxl mx-auto bg-white border-customGreen mt-20">
 <div className="w-full">
-   <div className="flex items-left mb-10 pl-48 ">
+   <div className="flex items-left mb-10 pl-48 -ml-[180px]">
       <h1 className="font-black text-customGreen text-left text-2xl ml-32">All Cars</h1>
    
 {/* search */}
@@ -147,12 +147,12 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
    {/* filter with months */}
 
 {/* add vehicle details */}
-          <AiOutlinePlusCircle onClick={toggleFormVisibility} className="text-darkGreen font-black text-4xl ml-auto mr-64 cursor-pointer hover:opacity-75" />
+          <AiOutlinePlusCircle onClick={toggleFormVisibility} className="text-darkGreen font-black text-4xl ml-auto mr-[280px] cursor-pointer hover:opacity-75" />
          
          <AddVehicleForm isVisible={isFormVisible} toggleVisibility={toggleFormVisibility} handleInputChange={handleInputChange} handleSave={handleSave} newItem={newItem} />
 {/* add vehicle details */}
     </div>
-    <div className="items-center justify-center">
+    <div className="items-center justify-center -ml-48">
 <ul className="my-custom-list-style flex items-center mt-4">
   <li className="text-xl font-semibold text-black ml-[330px]">Year</li>
   <li className="text-xl font-semibold text-black ml-[215px]">Model</li>
@@ -162,26 +162,26 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
 </ul>
 </div>
   </div>
-  <div className=" inset-x-0 bottom-0 h-0.5 w-4/5 bg-darkGreen my-4 ml-56" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
+  <div className=" inset-x-0 bottom-0 h-0.5 w-5/6 bg-darkGreen my-4 ml-16" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
 
     {/* vehicles lists */}
     <div >
         {filteredVehicles? (
           filteredVehicles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
 <div className="">
-<div className="py-4 px-3">
-  <ul key={item.vehicleId} className="flex items-center space-x-44 mx-80 mt-4">
-    <li className="text-l font-normal text-black w-[110px]">{item.year}</li>
-    <li className="text-l font-normal text-black w-[100px]">{item.model}</li>
-    <li className="text-l font-normal text-black w-[200px]">{item.chassisNumber}</li>
-    <li className="text-l font-normal text-black w-[150px]">{item.ghgEmissions}</li>
+<div className="py-4 px-3 -ml-40">
+  <ul key={item.vehicleId} className="flex items-center space-x-44 mx-[278px] mt-4">
+    <li className="text-l font-normal text-black w-[80px]">{item.year}</li>
+    <li className="text-l font-normal text-black w-[80px]">{item.model}</li>
+    <li className="text-l font-normal text-black w-[140px]">{item.chassisNumber}</li>
+    <li className="text-l font-normal text-black w-[90px]">{item.ghgEmissions}</li>
     <li className="text-l font-normal text-black w-[150px]">{item.engineType}</li>
   </ul>
-  <IoTrashOutline onClick={() => handleDelete(item.vehicleId)} className="text-customGreen cursor-pointer text-2xl font-black -mt-7 ml-[85%]"/>
+  <IoTrashOutline onClick={() => handleDelete(item.vehicleId)} className="text-customGreen cursor-pointer text-2xl font-black -mt-7 ml-[83%]"/>
 </div>
 
 
-<div className=" inset-x-0 bottom-0 h-0.5 w-4/5 bg-darkGreen my-4 ml-56" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
+<div className=" inset-x-0 bottom-0 h-0.5 w-5/6 bg-darkGreen my-4 ml-16" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
 
 </div>))) : (
           <p>Loading...</p>
@@ -190,11 +190,11 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
     {/* vehicles lists */}
 {/* pagination */}
 <div className="flex justify-center mt-4">
-        <p className="absolute mr-[71em] mt-3">Page {currentPage} of {totalPages}</p>
+        <p className="absolute mr-[83em] mt-3">Page {currentPage} of {totalPages}</p>
         
         <button
           onClick={() => setCurrentPage((prev) => prev > 1 ? prev - 1 : prev)} disabled={currentPage === 1}
-          className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl ml-14 mt-2"> Previous</button>
+          className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl -ml-52 mt-2"> Previous</button>
 
         <button
           onClick={() => setCurrentPage((prev) => prev + 1)} disabled={currentPage * itemsPerPage >= (filteredVehicles?.length || 0)}
