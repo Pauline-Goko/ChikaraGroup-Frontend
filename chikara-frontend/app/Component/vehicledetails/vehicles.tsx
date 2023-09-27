@@ -183,9 +183,9 @@ const handleDelete = (vehicleId: string) => {
 <ul className="my-custom-list-style flex items-center mt-4">
   <li className="text-xl font-semibold text-black ml-[330px]">Year</li>
   <li className="text-xl font-semibold text-black ml-[215px]">Model</li>
-  <li className="text-xl font-semibold text-black ml-[165px]">Chassis Number</li>
+  <li className="text-xl font-semibold text-black ml-[185px]">Chassis Number</li>
   <li className="text-xl font-semibold text-black ml-[155px]">GHG Emissions</li>
-  <li className="text-xl font-semibold text-black ml-[125px]">Engine type</li>
+  <li className="text-xl font-semibold text-black ml-[135px]">Engine type</li>
 </ul>
 </div>
   </div>
@@ -196,18 +196,6 @@ const handleDelete = (vehicleId: string) => {
         {filteredVehicles? (
           filteredVehicles.map((item) => (
 <div className="">
-
-{/* <div className="py-4 px-3">
-<ul key={item.vehicleId} className="flex items-center space-x-44 mx-80 mt-4">
-  <li className="text-l font-normal text-black mr-12">{item.year}</li>
-  <li className="text-l font-normal text-black">{item.model}</li>
-  <li className="text-l font-normal text-black">{item.chassisNumber}</li>
-  <li className="text-l font-normal text-black">{item.ghgEmissions}</li>
-  <li className="text-l font-normal text-black -mr-2">{item.engineType}</li>
-</ul>
-  <IoTrashOutline onClick={() => handleDelete(item.vehicleId)} className="text-customGreen cursor-pointer text-2xl font-black -mt-7 ml-[85%]"/>
-</div> */}
-
 <div className="py-4 px-3">
   <ul key={item.vehicleId} className="flex items-center space-x-44 mx-80 mt-4">
     <li className="text-l font-normal text-black w-[110px]">{item.year}</li>
