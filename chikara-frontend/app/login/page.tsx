@@ -56,7 +56,7 @@ const LoginPage: React.FC = () => {
       </div>
 
       <div className="w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left mr-40">
-        <h1 className={`mt-8 mr-28 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins text-black font-extrabold`}>
+        <h1 className={`mt-8 ml-8 mr-28 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins text-black font-extrabold`}>
           Welcome Back
         </h1>
 
@@ -70,7 +70,7 @@ const LoginPage: React.FC = () => {
             name="email"
             value={credentials.email}
             onChange={handleInputChange}
-            className="h-14 px-5 rounded-3xl border-2 border-blue-200 bg-white"
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
             
           />
         </div>
@@ -85,7 +85,7 @@ const LoginPage: React.FC = () => {
               name="password"
               value={credentials.password}
               onChange={handleInputChange}
-              className="h-14 px-5 rounded-3xl border-2 border-blue-200 bg-white"
+              className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
              
             />
             <button
@@ -97,7 +97,7 @@ const LoginPage: React.FC = () => {
             </button>
           </div>
         </div>
-        <button onClick={handleSubmit} className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal ">
+        <button onClick={handleSubmit} className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 ">
           Login
         </button>
         <div>{response}</div>

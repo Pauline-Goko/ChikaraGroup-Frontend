@@ -41,7 +41,7 @@ const SignUp: React.FC = () => {
       if (result.success) {
         setResponse(JSON.stringify(result.data));
       
-        toast.success('Registration successful!');
+        
       } else {
         setResponse(result.error);
       }
@@ -237,7 +237,7 @@ const SignUp: React.FC = () => {
 
         <div>{response}</div>
 
-        <p className="mt-8 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
+        <p className="mt-4 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
           Already have an account?{' '}
           <Link href="/login">
             <span className="text-teal-300 font-Poppins font-bold">Sign In</span>
