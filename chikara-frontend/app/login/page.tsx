@@ -1,58 +1,42 @@
 "use client"
-import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
-import 'tailwindcss/tailwind.css';
+import React, { useState } from 'react';
+import { useLoginUser } from '../hooks/useLoginUser';
+import { ToastContainer, toast } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
 
-type FormData = {
-  email: string;
-  password: string;
-};
 
-type Errors = {
-  email?: string;
-  password?: string;
-};
 
-const Login = () => {
-  const [formData, setFormData] = useState<FormData>({
-    email: "",
-    password: "",
+
+
+const LoginPage: React.FC = () => {
+  const [credentials, setCredentials] = useState({
+    email: '',
+    password: '',
   });
 
-  const [errors, setErrors] = useState<Errors>({});
-
+  const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setErrors({
-      ...errors,
-      [name]: undefined,
-    });
-    setFormData({
-      ...formData,
+    setCredentials({
+      ...credentials,
       [name]: value,
     });
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    const newErrors: Errors = {};
+  const handleSubmit = async () => {
+    try {
+      const responseData = await useLoginUser(credentials);
 
-    if (!formData.email) {
-      newErrors.email = "Email is required.";
-    } else if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address.";
+      setResponse(JSON.stringify(responseData));
+
+      if (responseData.success) {
+        toast.success('Successfully logged in!');
+      }
+    } catch (error:any) {
+      setResponse(error.message);
     }
-    if (!formData.password) {
-      newErrors.password = "Password is required.";
-    }
-
-    setErrors(newErrors);
-  };
-
-  const isValidEmail = (email: string) => {
-    return email.includes("@");
   };
 
   const togglePasswordVisibility = () => {
@@ -63,68 +47,68 @@ const Login = () => {
     <div className="w-full h-screen flex flex-col sm:flex-row">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" />
+          <img
+            src="/Assets/backgrounds.png"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
-      <div className={`w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left -mt-60 mr-40`}>
+      <div className="w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left mr-40">
         <h1 className={`mt-8 mr-28 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins text-black font-extrabold`}>
           Welcome Back
         </h1>
-        <p className="mb-8 text-gray-400 -ml-14">Enter your email and password to sign in</p>
-        <form className="" onSubmit={handleSubmit}>
-          <div className={`mb-4`}>
-            <label htmlFor="email" className={`block text-black font-normal label`}>
-              Email
-            </label>
+
+        <div className="mb-2">
+          <label htmlFor="email" className="block text-gray-700 font-medium font-Poppins">
+            Email:
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={credentials.email}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-3xl border-2 border-blue-200 bg-white"
+            
+          />
+        </div>
+        <div>
+          <label htmlFor="password" className="block text-gray-700 font-medium font-Poppins">
+            Password:
+          </label>
+          <div className="relative">
             <input
-              type="email"
-              id="email"
-              name="email"
-              className={`mt-2 w-[350px] h-[50px] px-4 rounded-lg border-2 border-[#BCE2E3] bg-white labels`}
-              placeholder="Enter your email"
-              value={formData.email}
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              value={credentials.password}
               onChange={handleInputChange}
+              className="h-14 px-5 rounded-3xl border-2 border-blue-200 bg-white"
+             
             />
-            {errors.email && <p className={`text-red-500 mt-2`}>{errors.email}</p>}
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ?  <FaEye /> : <FaEyeSlash /> } {/* Use React Icons */}
+            </button>
           </div>
-          <div className={`mb-4`}>
-            <label htmlFor="password" className={`block text-black font-normal label`}>
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                className={`mt-2 w-[350px] h-[50px] px-4 rounded-lg border-2 border-[#BCE2E3] bg-white labels`}
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleInputChange}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 px-3 py-2"
-                onClick={togglePasswordVisibility}
-              >
-                 {showPassword ? <FaEye />   : <FaEyeSlash />}
-              </button>
-            </div>
-            {errors.password && <p className={`text-red-500 mt-2`}>{errors.password}</p>}
-          </div>
-          <button
-  type="submit"
-  className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal "
->
-  Sign in
-</button>
-        </form>
+        </div>
+        <button onClick={handleSubmit} className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal ">
+          Login
+        </button>
+        <div>{response}</div>
         <p className={`mt-8 -mr-8 text-gray-400 text-center font-Poppins text-lg -ml-28 label`}>
           Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
         </p>
+
+        <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </div>
   );
 };
 
-export default Login;
+export default LoginPage;

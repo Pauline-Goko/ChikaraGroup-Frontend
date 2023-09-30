@@ -1,326 +1,251 @@
 "use client"
-import React, { useState } from "react";
-import { FaEye, FaEyeSlash } from "react-icons/fa";
+import React, { useState } from 'react';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import { useCreateUser } from '../hooks/useCreateUser';
+import Link from 'next/link';
+import { ToastContainer, toast } from 'react-toastify';
 
-type FormData = {
-  companyName: string;
-  licenseNumber: string;
-  phone: string;
-  email: string;
-  password: string;
-  confirmPassword: string;
-};
-
-type Errors = {
-  companyName?: string;
-  licenseNumber?: string;
-  phone?: string;
-  email?: string;
-  password?: string;
-  confirmPassword?: string;
-};
-
-const Signup = () => {
-  const [formData, setFormData] = useState<FormData>({
-    companyName: "",
-    licenseNumber: "",
-    phone: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
+const SignUp: React.FC = () => {
+  const [user, setUser] = useState({
+    description: '',
+    company_id: '',
+    username: '',
+    location: '',
+    email: '',
+    phone_number: '',
+    password: '',
+    confirmPassword: '',
   });
 
-  const [errors, setErrors] = useState<Errors>({});
-
+  const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-
-    setErrors({
-      ...errors,
-      [name]: undefined,
-    });
-
-    setFormData({
-      ...formData,
+    setUser({
+      ...user,
       [name]: value,
     });
+  };
 
-    if (name === "confirmPassword") {
-      if (formData.password !== value) {
-        setErrors({
-          ...errors,
-          confirmPassword: "Passwords do not match.",
-        });
+  const handleSubmit = async () => {
+    const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
+
+    if (isAnyFieldEmpty) {
+      setResponse('Please fill out all fields.');
+      return;
+    }
+
+    try {
+      const result = await useCreateUser(user);
+      if (result.success) {
+        setResponse(JSON.stringify(result.data));
+      
+        toast.success('Registration successful!');
       } else {
-        setErrors({
-          ...errors,
-          confirmPassword: undefined,
-        });
+        setResponse(result.error);
       }
+    } catch (error) {
+      console.error('Error:', error);
+      setResponse('Error occurred. Please check the console for details.');
     }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    const newErrors: Errors = {};
-    if (!formData.companyName) {
-      newErrors.companyName = "Company name is required.";
-    }
-    if (!formData.licenseNumber) {
-      newErrors.licenseNumber = "License number is required.";
-    }
-    if (!formData.phone) {
-      newErrors.phone = "Phone number is required.";
-    }
-    if (!formData.email) {
-      newErrors.email = "Email is required.";
-    } else if (!isValidEmail(formData.email)) {
-      newErrors.email = "Invalid email address.";
-    }
-    if (!formData.password) {
-      newErrors.password = "Password is required.";
-    }
-    if (!formData.confirmPassword) {
-      newErrors.confirmPassword = "Confirm password is required.";
-    } else if (formData.password !== formData.confirmPassword) {
-      newErrors.confirmPassword = "Passwords do not match.";
-    }
-
-    setErrors(newErrors);
-  };
-
-  const isValidEmail = (email: string) => {
-    return email.includes("@");
   };
 
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
-  const toggleConfirmPasswordVisibility = () => {
-    setShowConfirmPassword(!showConfirmPassword);
-  };
+  const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
 
   return (
-    <div className="w-full h-screen flex flex-col sm:flex-row ">
-      <div className=" sm:flex w-1/2 relative flex items-center justify-center">
+    <div className="w-full h-screen flex flex-col sm:flex-row">
+      <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
           <img
             src="/Assets/backgrounds.png"
-            alt="harry"
+            alt="Background"
             className="w-full h-full object-cover"
           />
         </div>
       </div>
 
       <div className="w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left mr-40">
-        <h1 className="mt-8 -mr-1 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins  text-black ">
-          <span className="font-extrabold">Welcome to</span>{" "}
+        <h1 className="mt-4 -mr-6 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins text-black">
+          <span className="font-extrabold">Welcome to</span>{' '}
           <span className="text-teal-300 font-Gugi">Ecobasi</span>
         </h1>
-        <form className="w-ful  " onSubmit={handleSubmit}>
-          <div className="mb-4">
-            <label
-              htmlFor="companyName"
-              className="block text-gray-700 font-medium  font-Poppins "
-            >
-              Company name
-            </label>
-            <input
-              type="text"
-              id="companyName"
-              name="companyName"
-              className="mt-2 input inputs"
-              placeholder="Enter your company name"
-              value={formData.companyName}
-              onChange={handleInputChange}
-              style={{
-                height: "50px",
-                padding: "0px 20px",
-                alignItems: "center",
-                borderRadius: "15px",
-                border: "2px solid #BCE2E3",
-                background: "var(--black-amp-white-white, #FFF)",
-              }}
-            />
-            {errors.companyName && (
-              <p className="text-red-500 mt-2">{errors.companyName}</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="licenseNumber"
-              className="block text-gray-700 font-medium   font-Poppins "
-            >
-              License number
-            </label>
-            <input
-              type="text"
-              id="licenseNumber"
-              name="licenseNumber"
-              className="mt-2 input inputs"
-              placeholder="Enter your license number"
-              value={formData.licenseNumber}
-              onChange={handleInputChange}
-              style={{
-                height: "50px",
-                padding: "0px 20px",
-                alignItems: "center",
-                borderRadius: "15px",
-                border: "2px solid #BCE2E3",
-                background: "var(--black-amp-white-white, #FFF)",
-              }}
-            />
-            {errors.licenseNumber && (
-              <p className="text-red-500 mt-2">{errors.licenseNumber}</p>
-            )}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="phone"
-              className="block text-gray-700 font-medium font-Poppins "
-            >
-              Phone
-            </label>
-            <input
-              type="text"
-              id="phone"
-              name="phone"
-              className="mt-2 input inputs"
-              placeholder="Enter your phone number"
-              value={formData.phone}
-              onChange={handleInputChange}
-              style={{
-                height: "50px",
-                padding: "0px 20px",
-                alignItems: "center",
-                borderRadius: "15px",
-                border: "2px solid #BCE2E3",
-                background: "var(--black-amp-white-white, #FFF)",
-              }}
-            />
-            {errors.phone && <p className="text-red-500 mt-2">{errors.phone}</p>}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="email"
-              className="block text-gray-700 font-medium  font-Poppins "
-            >
-              Email
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="mt-2 input inputs"
-              placeholder="Enter your email"
-              value={formData.email}
-              onChange={handleInputChange}
-              style={{
-                height: "50px",
-                padding: "0px 20px",
-                alignItems: "center",
-                borderRadius: "15px",
-                border: "2px solid #BCE2E3",
-                background: "var(--black-amp-white-white, #FFF)",
-              }}
-            />
-            {errors.email && <p className="text-red-500 mt-2">{errors.email}</p>}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="password"
-              className="block text-gray-700 font-medium  font-Poppins "
-            >
-              Password
-            </label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                id="password"
-                name="password"
-                className="mt-2 input inputs"
-                placeholder="Enter your password"
-                value={formData.password}
-                onChange={handleInputChange}
-                style={{
-                  height: "50px",
-                  padding: "0px 20px",
-                  alignItems: "center",
-                  borderRadius: "15px",
-                  border: "2px solid #BCE2E3",
-                  background: "var(--black-amp-white-white, #FFF)",
-                }}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 px-3 py-2"
-                onClick={togglePasswordVisibility}
-              >
-                {showPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
-            </div>
-            {errors.password && <p className="text-red-500 mt-2">{errors.password}</p>}
-          </div>
-          <div className="mb-4">
-            <label
-              htmlFor="confirmPassword"
-              className="block text-gray-700 font-medium  font-Poppins "
-            >
-              Confirm Password
-            </label>
-            <div className="relative">
-              <input
-                type={showConfirmPassword ? "text" : "password"}
-                id="confirmPassword"
-                name="confirmPassword"
-                className="mt-2 input inputs"
-                placeholder="Confirm your password"
-                value={formData.confirmPassword}
-                onChange={handleInputChange}
-                style={{
-                  height: "50px",
-                  padding: "0px 20px",
-                  alignItems: "center",
-                  borderRadius: "15px",
-                  border: "2px solid #BCE2E3",
-                  background: "var(--black-amp-white-white, #FFF)",
-                }}
-              />
-              <button
-                type="button"
-                className="absolute inset-y-0 right-0 px-3 py-2"
-                onClick={toggleConfirmPasswordVisibility}
-              >
-                {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
-              </button>
-            </div>
-            {errors.confirmPassword && (
-              <p className="text-red-500 mt-2">{errors.confirmPassword}</p>
-            )}
-          </div>
-          <button
-  type="submit"
-  className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal "
->
-  Sign Up
-</button>
 
-        </form>
+        <div className="mb-2">
+          <label htmlFor="description" className="block text-gray-700 font-medium font-Poppins">
+            Description:
+          </label>
+          <input
+            type="text"
+            id="description"
+            name="description"
+            value={user.description}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="company_id" className="block text-gray-700 font-medium font-Poppins">
+            Company ID:
+          </label>
+          <input
+            type="text"
+            id="company_id"
+            name="company_id"
+            value={user.company_id}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="username" className="block text-gray-700 font-medium font-Poppins">
+            Username:
+          </label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            value={user.username}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="location" className="block text-gray-700 font-medium font-Poppins">
+            Location:
+          </label>
+          <input
+            type="text"
+            id="location"
+            name="location"
+            value={user.location}
+            onChange={handleInputChange}
+            className="h-14 px-4 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="email" className="block text-gray-700 font-medium font-Poppins">
+            Email:
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={user.email}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="phone_number" className="block text-gray-700 font-medium font-Poppins">
+            Phone Number:
+          </label>
+          <input
+            type="text"
+            id="phone_number"
+            name="phone_number"
+            value={user.phone_number}
+            onChange={handleInputChange}
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+           
+          />
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="password" className="block text-gray-700 font-medium font-Poppins">
+            Password:
+          </label>
+          <div className="relative ">
+            <input 
+              type={showPassword ? 'text' : 'password'}
+              id="password"
+              name="password"
+              value={user.password}
+              onChange={handleInputChange}
+              className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
+             
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          </div>
+        </div>
+
+        <div className="mb-2">
+          <label htmlFor="confirmPassword" className="block text-gray-700 font-medium font-Poppins">
+            Confirm Password:
+          </label>
+          <div className="relative">
+            <input
+              type={showPassword ? 'text' : 'password'}
+              id="confirmPassword"
+              name="confirmPassword"
+              value={user.confirmPassword}
+              onChange={handleInputChange}
+              className="h-14 px-6 rounded-2xl border-2 border-blue-200 bg-white"
+              
+            />
+            <button
+              type="button"
+              onClick={togglePasswordVisibility}
+              className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
+            >
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
+            </button>
+          </div>
+        </div>
+
+        {isAnyFieldEmpty && (
+          <p className="text-red-500 font-medium mb-4">Please fill out all the fields before proceeding.</p>
+        )}
+
+        {isAnyFieldEmpty ? (
+          <button
+            className="mt-2 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal"
+            disabled
+          >
+            Sign Up
+          </button>
+        ) : (
+          <Link href="/login">
+            <button
+              onClick={handleSubmit}
+              className="mt-2 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal ml-4"
+            >
+              Sign Up
+            </button>
+          </Link>
+        )}
+
+        <div>{response}</div>
 
         <p className="mt-8 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
-          Already have an account?{" "}
-          <a href="/login" className="text-teal-300 font-Poppins font-bold">
-            Sign In
-          </a>
+          Already have an account?{' '}
+          <Link href="/login">
+            <span className="text-teal-300 font-Poppins font-bold">Sign In</span>
+          </Link>
         </p>
       </div>
     </div>
   );
 };
 
-export default Signup;
+export default SignUp;
