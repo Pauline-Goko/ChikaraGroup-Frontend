@@ -4,6 +4,7 @@ import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';
 import Link from "next/link";
+import Image from "next/image";
 
 const Sidebar: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -53,27 +54,49 @@ const Sidebar: React.FC = () => {
       >
         <div className="p-4  flex items-center bg-white">
           <div className="relative ">
-            <img
-              src='./assets/Group 2364.png'
-              alt="Logo"
-              className={`logo object-contain h-20 ${
-                isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
-              }`}
-            />
+            
+          <Image
+            src="/assets/Group 2364.png" 
+             alt="Logo"
+              width={225} 
+               height={250} 
+                className={`logo object-contain h-20 ${
+                 isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
+                  }`}
+                  />
+            
           </div>
         </div>
         <ul className={`p-2 mt-14 ${isSidebarCollapsed ? 'hidden' : ''}`}>
-          
-          <Link href="/LimitChart">
+        {/* <li
+            className={` mt-13 flex py-4 text-white  ml-10 transition-all duration-600 cursor-pointer items-center ${
+              activeLink === "/homePage" ? 'bg-white text-teal-800 rounded-lg px-1 mr-4' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3'
+            }`}
+            onClick={() => setActiveLink("/homePage")}
+          >
+            <Link href="/homePage">
+              <div
+                className={`text-white mr-2 ${
+                  isSidebarCollapsed ? 'md:w-20 md:h-20' : ''
+                }`}
+              >
+                <FaHome className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
+              </div>
+            </Link>
+
+            <span className="capitalize text-xl text-teal-800 ">Overview</span>
+          </li> */}
+
+          <Link href="/emissionChart">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300 cursor-pointer items-center ">
             <FaCreditCard className={`text-white   mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Credits</span>
+            <span className="list capitalize text-xl ml-2">Emission</span>
           </li>
           </Link>
-          <Link href="/carbonChart">
+          <Link href="/creditChart">
           <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
             <FaCloud className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Emission</span>
+            <span className="list capitalize text-xl ml-2">Credits</span>
           </li>
           </Link>
           <Link href="/vehicles">

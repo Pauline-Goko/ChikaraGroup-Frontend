@@ -1,10 +1,11 @@
-'use client'
+'use client';
 import React, { useState, useEffect } from "react";
 import { vehiclelist } from "./Component/vehiclelist";
 import { IoTrashOutline } from 'react-icons/io5';
 import { AiOutlinePlusCircle } from 'react-icons/ai';
 import { ImSearch } from 'react-icons/im';
 import AddVehicleForm from "./Component/Addvehicle";
+import { it } from "node:test";
 
 
 interface VehicleProps{
@@ -168,7 +169,7 @@ const totalPages = Math.ceil((filteredVehicles?.length || 0) / itemsPerPage);
     <div >
         {filteredVehicles? (
           filteredVehicles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
-<div className="">
+<div key={item.vehicleId}>
 <div className="py-4 px-3 -ml-40">
   <ul key={item.vehicleId} className="flex items-center space-x-44 mx-[278px] mt-4">
     <li className="text-l font-normal text-black w-[80px]">{item.year}</li>

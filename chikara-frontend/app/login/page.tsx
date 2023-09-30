@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import 'tailwindcss/tailwind.css';
-import Link from "next/link";
+import Image from "next/image";
 
 type FormData = {
   email: string;
@@ -64,7 +64,15 @@ const Login = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen" style={{ marginLeft: '1px'}}>
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" />
+          {/* <img src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" /> */}
+          <Image 
+          src="/Assets/backgrounds.png"
+          alt="background"
+          width={1000}
+          height={200}
+          className="w-full h-full object-cover"
+          />
+
         </div>
       </div>
 
@@ -118,13 +126,13 @@ const Login = () => {
   type="submit"
   className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal "
 >
-  <a href="/LimitChart"> Sign in</a>
+  <a href="/emissionChart"> Sign in</a>
   
 
 </button>
         </form>
         <p className={`mt-8 -mr-8 text-gray-400 text-center font-Poppins text-lg -ml-28 label`}>
-          Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
+          Do not have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
         </p>
       </div>
     </div>
