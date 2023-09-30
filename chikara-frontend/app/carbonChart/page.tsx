@@ -2,56 +2,64 @@
 import { useEffect } from 'react';
 import { Chart } from 'chart.js';
 import React from 'react';
+import { useRouter } from 'next/navigation';
+import useGetCarbonCreditsChart from '../hooks/useGetCredits';
+import useGetChart from '../hooks/useGetChart';
 
-
-function CarbonAvoided() {
- 
+function CarbonCredits() {
+  const router = useRouter();
+  const { creditchart: creditChart } = useGetCarbonCreditsChart();
+  const { chartLimit: limitChart } = useGetChart();
+  
   useEffect(() => {
-    const carbonChart = document.getElementById('myChart2')!;
-    const chartLine = carbonChart.getContext('2d');
-    const myChart2 = new Chart(chartLine, {
-      type: 'line',
-      data: {
-        labels: [
-          'January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December',
-        ],
-        datasets: [
-          {
-            data: [
-              13000, 15000, 17000, 11000, 46000, 16000,
-              17000, 14000, 17000, 31000, 13000, 33000,
-            ],
-            label: 'Carbon Avoided',
-            borderColor: '#1BEF0B',
-            backgroundColor: '#1BEF0B',
-            fill: false,
-            lineTension: 0,
-          },
-          {
-            data: [
-              13000, 15000, 20000, 11000, 46000, 19000,
-              19000, 14000, 17000, 31000, 13000, 32000,
-            ],
-            label: 'Carbon credits earned',
-            borderColor: '#8A23E3',
-            backgroundColor: '#8A23E3',
-            fill: false,
-            lineTension: 0,
-          },
-        ],
-      },
-    });
-  }, []);
+    
+    if (creditChart && limitChart) {
+      const numericCreditEarned = creditChart.map(item => parseFloat(item.credit_earned));
+      const creditchart = document.getElementById('myChart2') as HTMLCanvasElement | null;
+
+      if (creditchart) {
+        const chartLine = creditchart.getContext('2d');
+
+        if (chartLine) {
+          const myChart = new Chart(chartLine, {
+            type: 'line',
+            data: {
+              labels: [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December',
+              ],
+              datasets: [
+                {
+                  data: limitChart.map(item => item.emission_limit),
+                  label: 'Carbon Avoided',
+                  borderColor: '#1BEF0B',
+                  backgroundColor: '#1BEF0B',
+                  fill: false,
+                  lineTension: 0,
+                },
+                {
+                  data: numericCreditEarned,
+                  label: 'Carbon Credits Earned',
+                  borderColor: '#8A23E3',
+                  backgroundColor: '#8A23E3',
+                  fill: false,
+                  lineTension: 0,
+                },
+              ],
+            },
+          });
+        }
+      }
+    }
+  }, [creditChart, limitChart]);
 
   return (
     <>
-     
-      <h1 className="text-center  mx-auto mt-10 text-3xl font-semibold">
-      Carbon avoided and carbon credit against time
+      <h1 className="text-center mx-auto mt-24 text-3xl font-semibold">
+        Greenhouse gas avoided and carbon credits earned
       </h1>
-      <div className="w-[1200px] h-[600px] flex mx-auto my-auto" >
-        <div className="border pt-0  w-full h-fit my-auto shadow-xl mt-10">
+      <div className="w-[1200px] h-[600px] flex mx-auto my-auto ml-10">
+        <div className="border pt-0 w-full h-fit my-auto shadow-xl" style={{ marginLeft: '100px', marginTop: '40px' }}>
           <canvas id="myChart2" className="w-full h-full"></canvas>
         </div>
       </div>
@@ -59,4 +67,4 @@ function CarbonAvoided() {
   );
 }
 
-export default CarbonAvoided;
+export default CarbonCredits;
