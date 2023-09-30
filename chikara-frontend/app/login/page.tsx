@@ -126,7 +126,7 @@ const Login = () => {
   type="submit"
   className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal "
 >
-  <a href="/LimitChart"> Sign in</a>
+  <a href="/emissionChart"> Sign in</a>
   
 
 </button>
