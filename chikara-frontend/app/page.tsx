@@ -3,21 +3,14 @@ import Image from 'next/image';
 import Login from "./login/page";
 import Signup from "./signup/page";
 import Sidebar from './component/Sidebar';
-
-
+import Vehicles from "./vehicles/page";
 
 
 export default function Home() {
   return (
     <div>
-    
-   
-
-  {/* <CarbonEmitted/> */}
-   
-    {/* <Sidebar/> */}
+      <Signup/>
     </div>
    
-    
    )
 }
