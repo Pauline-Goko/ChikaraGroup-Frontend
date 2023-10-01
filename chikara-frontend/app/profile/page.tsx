@@ -1,7 +1,7 @@
 import React from "react";
 import {AiFillEdit} from 'react-icons/ai'
 import ProfileEdit from "../editProfile/page";
-import Layout from "../component/Layout";
+import Image from "next/image";import Layout from "../component/Layout";
 
 
 const Profile: React.FC = () => {
@@ -21,10 +21,18 @@ const Profile: React.FC = () => {
             <div className="profile-pic relative">
               
             
-              <img
+              {/* <img
                 src="/images/toyotaa.png"
                 alt="company logo"
                 className="w-60 h-auto rounded-md ml-44 mt-20 lg:mb-10"
+              /> */}
+
+              <Image
+              src="/images/toyotaa.png"
+              alt="company logo"
+              width={400}
+              height={200}
+              className="w-60 h-auto rounded-md ml-44 mt-20 lg:mb-10"
               />
               
               <div className=" cursor-pointer bg-color-red w-">
@@ -41,10 +49,18 @@ const Profile: React.FC = () => {
               </span>
             </div>
             <div className="company mt-10 ml-8 relative items-center justify-center">
-              <img
+              {/* <img
                 src="/images/Toyota-Kenya.jpeg"
                 alt="company photo"
                 className="w-full rounded-md border-2 border-teal-500"
+              /> */}
+
+              <Image 
+              src="/images/Toyota-Kenya.jpeg"
+              alt="company photo"
+              width={300}
+              height={200}
+              className="w-full rounded-md border-2 border-teal-500"
               />
               
             </div>

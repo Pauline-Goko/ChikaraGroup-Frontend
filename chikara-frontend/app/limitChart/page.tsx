@@ -69,3 +69,4 @@ function CarbonEmitted() {
 }
 
 export default CarbonEmitted;
+

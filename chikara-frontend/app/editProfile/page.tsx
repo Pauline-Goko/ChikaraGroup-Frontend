@@ -1,6 +1,7 @@
 import React from "react";
 import { AiFillEdit } from "react-icons/ai";
 import Link from "next/link";
+import Image from "next/image";
 
 
 const ProfileEdit: React.FC = () => {
@@ -18,10 +19,18 @@ const ProfileEdit: React.FC = () => {
           <div className="lg:w-3/4">
             <div className="profile-pic relative">
               <div className="ml-32 ">
-                <img
+
+                {/* <img
                   src="/images/toyotaa.png"
                   alt="company logo"
                   className="w-60 h-auto rounded-md ml-96 mt-20 lg:mb-10"
+                /> */}
+                <Image 
+                src="/images/toyotaa.png"
+                alt="toyota"
+                width={200}
+                height={300}
+                className="w-60 h-auto rounded-md ml-96 mt-20 lg:mb-10"
                 />
               </div>
               <div className=" cursor-pointer ml-72">
