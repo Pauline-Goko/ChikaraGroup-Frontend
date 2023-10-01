@@ -36,7 +36,7 @@ const AddVehicleForm: React.FC<AddVehicleFormProps> = ({
             <input type="text" name="engineType" value={newItem.engineType} onChange={handleInputChange} placeholder="Engine Type" className="border-gray-400 border rounded-md px-6 py-4 text-sm mb-5 mr-5 focus:outline-none "/>
             <input type="text" name="month" value={newItem.month} onChange={handleInputChange} placeholder="Month" className="border-gray-400 border rounded-md px-6 py-4 text-sm mb-5 mr-5 focus:outline-none "/>
          </div>
-        {/*  Save and Cancel Buttons*/}
+      
         {newItem.year && newItem.model && newItem.chassisNumber && newItem.ghgEmissions && newItem.engineType && newItem.month ? (
 
      <>
