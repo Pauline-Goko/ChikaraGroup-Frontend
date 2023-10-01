@@ -3,7 +3,8 @@ import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { useCreateUser } from '../hooks/useCreateUser';
 import Link from 'next/link';
-import { ToastContainer, toast } from 'react-toastify';
+
+
 
 const SignUp: React.FC = () => {
   const [user, setUser] = useState({
@@ -16,9 +17,12 @@ const SignUp: React.FC = () => {
     password: '',
     confirmPassword: '',
   });
-
   const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -27,7 +31,6 @@ const SignUp: React.FC = () => {
       [name]: value,
     });
   };
-
   const handleSubmit = async () => {
     const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
 
@@ -37,24 +40,33 @@ const SignUp: React.FC = () => {
     }
 
     try {
+      setResponse('Registration successful...');
+
+
+      await new Promise((resolve) => setTimeout(resolve,2000));
+
       const result = await useCreateUser(user);
       if (result.success) {
-        setResponse(JSON.stringify(result.data));
+        setResponse('Signup successful');
+
+
       
-        
       } else {
         setResponse(result.error);
       }
-    } catch (error) {
+    } catch (error:any) {
       console.error('Error:', error);
       setResponse('Error occurred. Please check the console for details.');
     }
   };
 
-  const togglePasswordVisibility = () => {
-    setShowPassword(!showPassword);
+  const togglePasswordVisibility = (field: string) => {
+    if (field === 'password') {
+      setShowPassword(!showPassword);
+    } else if (field === 'confirmPassword') {
+      setShowConfirmPassword(!showConfirmPassword);
+    }
   };
-
   const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
 
   return (
@@ -86,7 +98,7 @@ const SignUp: React.FC = () => {
             value={user.description}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-           
+
           />
         </div>
 
@@ -101,7 +113,7 @@ const SignUp: React.FC = () => {
             value={user.company_id}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-           
+
           />
         </div>
 
@@ -116,7 +128,7 @@ const SignUp: React.FC = () => {
             value={user.username}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-           
+
           />
         </div>
 
@@ -131,7 +143,7 @@ const SignUp: React.FC = () => {
             value={user.location}
             onChange={handleInputChange}
             className="h-14 px-4 rounded-2xl border-2 border-blue-200 bg-white"
-           
+
           />
         </div>
 
@@ -146,7 +158,7 @@ const SignUp: React.FC = () => {
             value={user.email}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-           
+
           />
         </div>
 
@@ -156,12 +168,14 @@ const SignUp: React.FC = () => {
           </label>
           <input
             type="text"
+            placeholder="start with your code (e.g.,+254)"
+
             id="phone_number"
             name="phone_number"
             value={user.phone_number}
             onChange={handleInputChange}
-            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-           
+            className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white placeholder-text-sm"
+
           />
         </div>
 
@@ -169,19 +183,18 @@ const SignUp: React.FC = () => {
           <label htmlFor="password" className="block text-gray-700 font-medium font-Poppins">
             Password:
           </label>
-          <div className="relative ">
-            <input 
+          <div className="relative">
+            <input
               type={showPassword ? 'text' : 'password'}
               id="password"
               name="password"
               value={user.password}
               onChange={handleInputChange}
               className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-             
             />
             <button
               type="button"
-              onClick={togglePasswordVisibility}
+              onClick={() => togglePasswordVisibility('password')}
               className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
             >
               {showPassword ? <FaEye /> : <FaEyeSlash />}
@@ -195,20 +208,19 @@ const SignUp: React.FC = () => {
           </label>
           <div className="relative">
             <input
-              type={showPassword ? 'text' : 'password'}
+              type={showConfirmPassword ? 'text' : 'password'}
               id="confirmPassword"
               name="confirmPassword"
               value={user.confirmPassword}
               onChange={handleInputChange}
               className="h-14 px-6 rounded-2xl border-2 border-blue-200 bg-white"
-              
             />
             <button
               type="button"
-              onClick={togglePasswordVisibility}
+              onClick={() => togglePasswordVisibility('confirmPassword')}
               className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
             >
-              {showPassword ? <FaEye /> : <FaEyeSlash />}
+              {showConfirmPassword ? <FaEye /> : <FaEyeSlash />}
             </button>
           </div>
         </div>
@@ -233,9 +245,11 @@ const SignUp: React.FC = () => {
               Sign Up
             </button>
           </Link>
+
         )}
 
         <div>{response}</div>
+
 
         <p className="mt-4 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
           Already have an account?{' '}

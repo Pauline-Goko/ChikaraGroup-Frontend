@@ -1,14 +1,14 @@
 "use client"
 import React, { useState } from 'react';
 import { useLoginUser } from '../hooks/useLoginUser';
-import { ToastContainer, toast } from 'react-toastify';
-import { FaEye, FaEyeSlash } from 'react-icons/fa'; 
+import { ToastContainer } from 'react-toastify';
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
+import Link from 'next/link';
 
-
-
-
+import { useRouter } from 'next/navigation';
 
 const LoginPage: React.FC = () => {
+  const router=useRouter();
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
@@ -16,6 +16,7 @@ const LoginPage: React.FC = () => {
 
   const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+ 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -26,15 +27,30 @@ const LoginPage: React.FC = () => {
   };
 
   const handleSubmit = async () => {
+   
     try {
       const responseData = await useLoginUser(credentials);
-
-      setResponse(JSON.stringify(responseData));
+      setResponse('Logging in...');
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       if (responseData.success) {
-        toast.success('Successfully logged in!');
+        setResponse("You have logged in successfully");
+        router.push("/carbonChart");
+
+        setTimeout(() => {
+          
+          router.push("/carbonChart"); 
+       
+         
+        }, 3000);
+      } else {
+        setResponse(responseData.message || "Please input correct login details");
+
+        setTimeout(() => {
+          setResponse(null);
+        }, 3000);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       setResponse(error.message);
     }
   };
@@ -42,7 +58,6 @@ const LoginPage: React.FC = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
-
   return (
     <div className="w-full h-screen flex flex-col sm:flex-row">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
@@ -71,7 +86,6 @@ const LoginPage: React.FC = () => {
             value={credentials.email}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-            
           />
         </div>
         <div>
@@ -86,21 +100,26 @@ const LoginPage: React.FC = () => {
               value={credentials.password}
               onChange={handleInputChange}
               className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-             
             />
             <button
               type="button"
               onClick={togglePasswordVisibility}
               className="absolute top-1/2 right-4 transform -translate-y-1/2 text-gray-500"
             >
-              {showPassword ?  <FaEye /> : <FaEyeSlash /> } {/* Use React Icons */}
+              {showPassword ? <FaEye /> : <FaEyeSlash />}
             </button>
           </div>
         </div>
-        <button onClick={handleSubmit} className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 ">
+        <Link href="/carbonChart">
+        <button onClick={handleSubmit } className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 " >
           Login
         </button>
-        <div>{response}</div>
+        </Link>
+      
+     
+        {response && (
+          <div className="mt-4 text-teal-500 font-Poppins text-lg">{response}</div>
+        )}
         <p className={`mt-8 -mr-8 text-gray-400 text-center font-Poppins text-lg -ml-28 label`}>
           Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
         </p>

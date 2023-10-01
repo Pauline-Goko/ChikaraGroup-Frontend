@@ -14,6 +14,8 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       colors: {
+        customGreen: '#0C8283',
+        darkGreen: '#035852',
         black: '#000',
         teal: {
           300: '#0C8283',
@@ -29,7 +31,6 @@ const config: Config = {
         },
         'bg-0C8283': '#0C8283',
         'bg-0C8283-hover': '#your-hover-color',
-        // Add your custom colors here
         customColor1: '#ABCDEF',
         customColor2: '#FEDCBA',
       },
