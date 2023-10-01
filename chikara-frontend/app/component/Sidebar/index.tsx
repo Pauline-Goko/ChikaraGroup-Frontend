@@ -1,30 +1,26 @@
-
-"use client"
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';
 import Link from "next/link";
-import Image from "next/image";
-
 const Sidebar: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [activeLink, setActiveLink] = useState("/homePage");
-
+  const [activeLink, setActiveLink] = useState("/homePage"); // Initialize activeLink with the default value
   const toggleSidebar = () => {
     setIsSidebarCollapsed(!isSidebarCollapsed);
   };
-
   const closeSidebar = () => {
     if (isMobile && !isSidebarCollapsed) {
       setIsSidebarCollapsed(true);
     }
   };
-
   const handleResize = () => {
     setIsMobile(window.innerWidth <= 768);
   };
-
+  // Function to set the active link when a link is clicked
+  const handleLinkClick = (link: string) => {
+    setActiveLink(link);
+  };
   useEffect(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
@@ -32,7 +28,6 @@ const Sidebar: React.FC = () => {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
-
   return (
     <div className={`flex h-screen ${isMobile ? 'md:h-auto' : ''}`} style={{ backgroundColor: '#098081' }}>
       {isMobile && (
@@ -54,76 +49,63 @@ const Sidebar: React.FC = () => {
       >
         <div className="p-4  flex items-center bg-white">
           <div className="relative ">
-            
-          <Image
-            src="/assets/Group 2364.png" 
-             alt="Logo"
-              width={225} 
-               height={250} 
-                className={`logo object-contain h-20 ${
-                 isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
-                  }`}
-                  />
-            
+            <img
+              src='./assets/Group 2364.png'
+              alt="Logo"
+              className={`logo object-contain h-20 ${
+                isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
+              }`}
+            />
           </div>
         </div>
         <ul className={`p-2 mt-14 ${isSidebarCollapsed ? 'hidden' : ''}`}>
-        {/* <li
-            className={` mt-13 flex py-4 text-white  ml-10 transition-all duration-600 cursor-pointer items-center ${
-              activeLink === "/homePage" ? 'bg-white text-teal-800 rounded-lg px-1 mr-4' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3'
-            }`}
-            onClick={() => setActiveLink("/homePage")}
+        <Link href="/limitChart">
+        <li
+            onClick={() => handleLinkClick("/LimitChart")}
+            
+            className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/LimitChart" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
           >
-            <Link href="/homePage">
-              <div
-                className={`text-white mr-2 ${
-                  isSidebarCollapsed ? 'md:w-20 md:h-20' : ''
-                }`}
-              >
-                <FaHome className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-              </div>
-            </Link>
+            <FaCreditCard className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
+            <span className="list capitalize text-xl ml-2">Credits</span>
+          </li>
+        </Link>
 
-            <span className="capitalize text-xl text-teal-800 ">Overview</span>
-          </li> */}
 
-          <Link href="/emissionChart">
-          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300 cursor-pointer items-center ">
-            <FaCreditCard className={`text-white   mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
+        
+
+
+        <Link href="/carbonChart">
+          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
+            <FaCloud className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Emission</span>
           </li>
           </Link>
-          <Link href="/creditChart">
-          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
-            <FaCloud className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Credits</span>
-          </li>
-          </Link>
+
           <Link href="/vehicles">
-          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300 cursor-pointer items-center">
-            <FaBus className={`text-white  mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
+          <li
+            onClick={() => handleLinkClick("/vehicles")}
+            className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/vehicles" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
+          >
+            <FaBus className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Vehicles</span>
           </li>
           </Link>
-          <Link href="/profile">
-          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px- transition-all duration-300 cursor-pointer items-center">
-            <FaUser className={`text-white  mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
+        <Link href="/profile">
+        <li
+            onClick={() => handleLinkClick("/profile")}
+            className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/profile" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
+          >
+            <FaUser className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
             <span className="list capitalize text-xl ml-2">Profiles</span>
           </li>
-          </Link>
-          
+        </Link>
         </ul>
-        
         <div className="flex-grow"></div>
         <div className="p-4"></div>
-        <footer className=" ml-12 mb-6 text-sm text-white">@2023 Ecobasi, <br /> All rights reserved</footer>
+        <footer className="ml-12 mb-6 text-sm text-white">@2023 Ecobasi, <br /> All rights reserved</footer>
       </div>
       <div className={`flex-grow bg-white ${isMobile && isSidebarCollapsed ? 'md:w-60' : ''}`} onClick={closeSidebar}></div>
-     
     </div>
   );
 };
-
 export default Sidebar;
-
-

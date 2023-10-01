@@ -1,11 +1,13 @@
 import React from "react";
 import {AiFillEdit} from 'react-icons/ai'
 import ProfileEdit from "../editProfile/page";
-import Image from "next/image";
+import Image from "next/image";import Layout from "../component/Layout";
+
 
 const Profile: React.FC = () => {
   return (
-    <div
+    <Layout>
+         <div
       className="bg bg-cover bg-center"
       style={{
         backgroundImage: "url(/images/Bg-pic.png)",
@@ -14,16 +16,12 @@ const Profile: React.FC = () => {
     >
       <div className="container mx-auto py-8 ">
         <div className="lg:flex justify-center items-center">
-          {/* First Half */}
+        
           <div className="lg:w-1/2">
             <div className="profile-pic relative">
               
             
-              {/* <img
-                src="/images/toyotaa.png"
-                alt="company logo"
-                className="w-60 h-auto rounded-md ml-44 mt-20 lg:mb-10"
-              /> */}
+            
 
               <Image
               src="/images/toyotaa.png"
@@ -47,12 +45,7 @@ const Profile: React.FC = () => {
               </span>
             </div>
             <div className="company mt-10 ml-8 relative items-center justify-center">
-              {/* <img
-                src="/images/Toyota-Kenya.jpeg"
-                alt="company photo"
-                className="w-full rounded-md border-2 border-teal-500"
-              /> */}
-
+           
               <Image 
               src="/images/Toyota-Kenya.jpeg"
               alt="company photo"
@@ -64,7 +57,7 @@ const Profile: React.FC = () => {
             </div>
           </div>
 
-          {/* Second Half */}
+        
           <div className="lg:w-1/2 mt-4 lg:mt-0 lg:ml-4 -mb-60">
 
             <div className="info mt-4 lg:ml-4">
@@ -97,6 +90,8 @@ const Profile: React.FC = () => {
         </div>
       </div>
     </div>
+    </Layout>
+ 
   );
 };
 

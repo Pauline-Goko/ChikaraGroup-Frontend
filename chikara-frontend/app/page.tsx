@@ -1,15 +1,16 @@
-import CarbonEmitted from "./emissionChart/page";
-import Image from 'next/image';
-import Login from "./login/page";
-import Signup from "./signup/page";
-import Sidebar from './component/Sidebar';
-import Vehicles from "./vehicles/page";
+import SignUp from "./signup/page";
+
 
 
 export default function Home() {
   return (
     <div>
-      <Signup/>
+      <SignUp/>
+    
+   
+
+  
+   
     </div>
    
    )
