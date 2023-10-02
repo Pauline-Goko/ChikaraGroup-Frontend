@@ -15,21 +15,28 @@ const Sidebar: React.FC = () => {
       setIsSidebarCollapsed(true);
     }
   };
-  const handleResize = () => {
-    setIsMobile(window.innerWidth <= 768);
-  };
-
-  const handleLinkClick = (link: string) => {
-    setActiveLink(link);
+    
+    const handleLinkClick = (link: string) => {
+      setActiveLink(link);
+    };
+    
+    
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
   };
 
   useEffect(() => {
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => {
-      window.removeEventListener('resize', handleResize);
+    handleResize(); 
+    const handleResizeWrapper = () => {
+      handleResize();
     };
-  }, []);
+    document.addEventListener('resize', handleResizeWrapper);
+    return () => {
+      document.removeEventListener('resize', handleResizeWrapper);
+    };
+  }, []); 
+
+
   return (
     <div className={`flex h-screen ${isMobile ? 'md:h-auto' : ''}`} style={{ backgroundColor: '#098081' }}>
       {isMobile && (
@@ -59,32 +66,32 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
         <ul className={`p-2 mt-14 ${isSidebarCollapsed ? 'hidden' : ''}`}>
-          <Link href="/limitChart">
+          <Link href="/creditChart">
             <li
-              onClick={() => handleLinkClick("/LimitChart")}
-              className={`flex mt-6 py-4 ml-10 cursor-pointer items-center ${activeLink === "/LimitChart"
+              onClick={() => handleLinkClick("/creditChart")}
+              className={`flex mt-6 py-4 ml-10 cursor-pointer items-center ${activeLink === "/creditChart"
                   ? 'bg-white text-teal-800 rounded-lg px-3'
                   : 'text-white hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'
                 }`}
             >
                <FaCreditCard
           className={`mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''} ${
-            activeLink === "/LimitChart" ? 'text-teal-800  ' : 'text-white '
+            activeLink === "/creditChart" ? 'text-teal-800  ' : 'text-white '
           }`} />
               <span className="list capitalize text-xl ml-2">Credits</span>
             </li>
 
           </Link>
-          <Link href="/carbonChart">
+          <Link href="/emissionChart">
             <li
-              onClick={() => handleLinkClick('/carbonChart')}
-              className={`flex mt-6 py-4 ml-10 cursor-pointer items-center ${activeLink === '/carbonChart'
+              onClick={() => handleLinkClick('/emissionChart')}
+              className={`flex mt-6 py-4 ml-10 cursor-pointer items-center ${activeLink === '/emissionChart'
                   ? 'bg-white text-teal-800 rounded-lg px-3'
                   : 'text-white hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'
                 }`}
             >
               <FaCloud  className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}  ${
-            activeLink === "/carbonChart" ? 'text-teal-800  ' : 'text-white '
+            activeLink === "/emissionChart" ? 'text-teal-800  ' : 'text-white '
           }`} />
               <span className="list capitalize text-xl ml-2">Emissions</span>
             </li>

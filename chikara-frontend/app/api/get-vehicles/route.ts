@@ -10,10 +10,10 @@ export async function GET() {
         }
         const response=await fetch(`${BASE_URL}/emissionsdata/emissionsdata/`)
         const result=await response.json();
- const getResult = result.emissions_data;
-        console.log(result);
+        const get_result = result.emissions_data;
+       
         
-        return new Response(JSON.stringify(getResult),{
+        return new Response(JSON.stringify(get_result),{
             status:200,
             statusText:'Success'
         })

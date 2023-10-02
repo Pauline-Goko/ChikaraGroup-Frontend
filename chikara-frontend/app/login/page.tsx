@@ -36,11 +36,11 @@ const LoginPage: React.FC = () => {
 
       if (responseData.success) {
         setResponse("You have logged in successfully");
-        router.push("/carbonChart");
+        router.push("/emissionChart");
 
         setTimeout(() => {
           
-          router.push("/carbonChart"); 
+          router.push("/emissionChart"); 
        
          
         }, 3000);
@@ -62,8 +62,12 @@ const LoginPage: React.FC = () => {
   return (
     <div className="w-full h-screen flex flex-col sm:flex-row">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
-        <div className="absolute inset-0">
-          <Image src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" width={2937} height={3319} />
+         <div className="absolute inset-0">
+          <img
+            src="/Assets/backgrounds.png"
+            alt="Background"
+            className="w-full h-full object-cover"
+          />
         </div>
       </div>
 
@@ -107,7 +111,7 @@ const LoginPage: React.FC = () => {
             </button>
           </div>
         </div>
-        <Link href="/carbonChart">
+        <Link href="/emissionChart">
         <button onClick={handleSubmit } className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 " >
           Login
         </button>

@@ -44,13 +44,13 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
       <h1 className="font-black text-customGreen text-left text-2xl ml-36">All Cars</h1>
 </div>
 
-<div className="items-center justify-center ml-[-180px]">
-<ul className="flex items-center mt-4">
-  <li className="text-xl font-semibold text-black ml-[330px]">Year</li>
-  <li className="text-xl font-semibold text-black ml-[200px]">Model</li>
-  <li className="text-xl font-semibold text-black ml-[175px]">Chassis Number</li>
-  <li className="text-xl font-semibold text-black ml-[150px]">GHG Emissions</li>
-  <li className="text-xl font-semibold text-black ml-[110px]">Engine type</li>
+<div className="items-center justify-center ">
+<ul className="flex items-center mt-4 space-x-48 ml-36">
+  <li className="text-xl font-semibold text-black ">Year</li>
+  <li className="text-xl font-semibold text-black ">Model</li>
+  <li className="text-xl font-semibold text-black ">Chassis Number</li>
+  <li className="text-xl font-semibold text-black ">GHG Emissions</li>
+  <li className="text-xl font-semibold text-black ">Engine type</li>
 </ul>
 </div>
   </div>
@@ -64,11 +64,11 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
 <div key={item.id}>
 <div className="py-4 px-3 -ml-28">
   <ul key={item.id} className="flex items-center space-x-[174px] mx-[248px] mt-4">
-    <li className="text-l font-normal text-black w-[85px]">{item.year}</li>
+    <li className="text-l font-normal text-black w-[65px]">{item.year}</li>
     <li className="text-l font-normal text-black w-[80px]">{item.vehicle_model}</li>
-    <li className="text-l font-normal text-black w-[140px]">{item.chassis_number}</li>
-    <li className="text-l font-normal text-black w-[90px]">{item.emission_value}</li>
-<li className="text-l font-normal text-black w-[150px]">{item.engine_type}</li>
+    <li className="text-l font-normal text-black w-[170px]">{item.chassis_number}</li>
+    <li className="text-l font-normal text-black w-[150px]">{item.emission_value}</li>
+<li className="text-l font-normal text-black">{item.engine_type}</li>
   </ul>
 </div>
 <div className=" inset-x-0 bottom-0 h-0.5 w-5/6 bg-darkGreen my-4 ml-16" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
@@ -79,7 +79,7 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     {/* vehicles lists */}
 {/* pagination */}
 <div className="flex justify-center mt-4">
-        <p className="absolute mr-[83em] mt-4 ml-24">Page {currentPage} of {totalPages}</p>
+        <p className="absolute mr-[83em] mt-5 -ml-32">Page {currentPage} of {totalPages}</p>
         <button
           onClick={() => setCurrentPage((prev) => prev > 1 ? prev - 1 : prev)} disabled={currentPage === 1}
           className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl -ml-44 mt-3"> Previous</button>

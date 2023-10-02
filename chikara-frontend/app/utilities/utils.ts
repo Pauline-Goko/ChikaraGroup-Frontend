@@ -117,7 +117,7 @@ export const getChart = async () => {
     const result = await response.json();
     return result;
   } catch (error:any) {
-    throw new Error(error.message || 'Failed to fetch limit chart');
+    throw new error.message;
   }
 
 };
@@ -134,7 +134,7 @@ export const getEmissionChart = async () => {
       const result = await response.json();
       return result;
     } catch (error:any) {
-      throw new Error(error.message || 'Failed to fetch emission chart');
+      throw new Error(error.message);
     }
 
   };
@@ -151,7 +151,7 @@ export const getCreditChart = async () => {
         const result = await response.json();
         return result;
       } catch (error:any) {
-        throw new Error(error.message || 'Failed to fetch credits chart');
+        throw new Error(error.message);
       }
   
     };

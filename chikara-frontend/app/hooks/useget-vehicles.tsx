@@ -15,22 +15,15 @@ function UsegetVehicles () {
 
     useEffect(()=>{
      const fetchVehicles = (async() => {
-try{
-    const vehicles = await getVehicles();
-    setVehicles(vehicles);
-// console.log("thisis",{vehicles});
+     const vehicles = await getVehicles();
+     setVehicles(vehicles);
+  })
+    fetchVehicles();
 
-}catch(error){
-
-    console.error('Cannot find vehicles', error);
-}
-})
-fetchVehicles();
-
-    },[])
+ },[])
     return vehicles
 }
-export default UsegetVehicles
+    export default UsegetVehicles
 
 
 
