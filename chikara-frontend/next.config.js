@@ -1,4 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {}
+// @type {import('next').NextConfig} 
 
-module.exports = nextConfig
+const nextConfig = {
+    images: {
+      domains: ['chikara-backend-9d2b1845e095.herokuapp.com'],
+    },
+  };
+  
+  module.exports = nextConfig;
