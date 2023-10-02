@@ -79,7 +79,7 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     {/* vehicles lists */}
 {/* pagination */}
 <div className="flex justify-center mt-4">
-        <p className="absolute mr-[83em] mt-4 -ml-36">Page {currentPage} of {totalPages}</p>
+        <p className="absolute mr-[83em] mt-4 ml-24">Page {currentPage} of {totalPages}</p>
         <button
           onClick={() => setCurrentPage((prev) => prev > 1 ? prev - 1 : prev)} disabled={currentPage === 1}
           className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl -ml-44 mt-3"> Previous</button>
