@@ -22,7 +22,3 @@ const useGetEmissionChart = () => {
   };
   
 export default useGetEmissionChart;
-
-
-
-

@@ -5,6 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import useGetCarbonCreditsChart from '../hooks/useGetCredits';
 import useGetChart from '../hooks/useGetChart';
+import Layout from '../component/Layout';
 
 function CarbonCredits() {
   const router = useRouter();
@@ -54,8 +55,9 @@ function CarbonCredits() {
   }, [creditChart, limitChart]);
 
   return (
+     <Layout>
     <>
-      <h1 className="text-center mx-auto mt-24 text-3xl font-semibold">
+     <h1 className="text-center mx-auto mt-24 text-3xl font-semibold">
         Greenhouse gas avoided and carbon credits earned
       </h1>
       <div className="w-[1200px] h-[600px] flex mx-auto my-auto ml-10">
@@ -64,6 +66,7 @@ function CarbonCredits() {
         </div>
       </div>
     </>
+     </Layout>
   );
 }
 
