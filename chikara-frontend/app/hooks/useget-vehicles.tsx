@@ -1,4 +1,4 @@
-import {getVehicles} from "@/app/Utilities/utils";
+import { getVehicles } from "../utilities/utils";
 import { useEffect,useState } from "react";
 
 export interface VehicleLists{

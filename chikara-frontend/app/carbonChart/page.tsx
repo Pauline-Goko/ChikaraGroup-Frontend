@@ -2,7 +2,7 @@
 import { useEffect } from 'react';
 import { Chart } from 'chart.js';
 import React from 'react';
-
+import Layout from '../component/Layout';
 
 function CarbonAvoided() {
  
@@ -46,6 +46,7 @@ function CarbonAvoided() {
 
   return (
     <>
+    <Layout>
      
       <h1 className="text-center mt-24  mx-auto  text-3xl font-semibold">
       Carbon avoided and carbon credit against time
@@ -55,8 +56,10 @@ function CarbonAvoided() {
           <canvas id="myChart2" className="w-full h-full"></canvas>
         </div>
       </div>
+      </Layout>
     </>
   );
 }
 
 export default CarbonAvoided;
+

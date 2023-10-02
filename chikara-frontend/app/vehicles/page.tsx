@@ -1,7 +1,8 @@
-'use client'
+'use client';
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { ImSearch } from 'react-icons/im';
 import UsegetVehicles from "../hooks/useget-vehicles";
+import Layout from "../component/Layout";
 
 const Vehicles = () => {
   const vehicles = UsegetVehicles();
@@ -18,12 +19,17 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     // search event
     const handleSearch = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchQuery(event.target.value)};
+    
     const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
 // search
+
+
+
     return (
-      <div className="w-full">
+   <Layout>
+       <div className="w-full ">
 {/* search */}
-    <div className="relative mt-20 ml-36">
+    <div className="relative mt-20 ml-40">
       <input type="text" placeholder="Search..."
              className="py-4 pl-10 pr-80 border rounded-lg border-black font-light focus:outline-none"
              value={searchQuery} onChange={handleSearch} />
@@ -35,16 +41,16 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
 <div  className="p-4 max-w-xxl mx-auto bg-white border-customGreen mt-20">
 <div className="w-full">
    <div className="flex items-left mb-10 pl-48 -ml-[185px]">
-      <h1 className="font-black text-customGreen text-left text-2xl ml-32">All Cars</h1>
-
+      <h1 className="font-black text-customGreen text-left text-2xl ml-36">All Cars</h1>
 </div>
-<div className="items-center justify-center -ml-48">
-<ul className="my-custom-list-style flex items-center mt-4">
+
+<div className="items-center justify-center ml-[-180px]">
+<ul className="flex items-center mt-4">
   <li className="text-xl font-semibold text-black ml-[330px]">Year</li>
-  <li className="text-xl font-semibold text-black ml-[215px]">Model</li>
-  <li className="text-xl font-semibold text-black ml-[185px]">Chassis Number</li>
-  <li className="text-xl font-semibold text-black ml-[155px]">GHG Emissions</li>
-  <li className="text-xl font-semibold text-black ml-[135px]">Engine type</li>
+  <li className="text-xl font-semibold text-black ml-[200px]">Model</li>
+  <li className="text-xl font-semibold text-black ml-[175px]">Chassis Number</li>
+  <li className="text-xl font-semibold text-black ml-[150px]">GHG Emissions</li>
+  <li className="text-xl font-semibold text-black ml-[110px]">Engine type</li>
 </ul>
 </div>
   </div>
@@ -56,9 +62,9 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
           filteredVehicles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
 
 <div key={item.id}>
-<div className="py-4 px-3 -ml-40">
-  <ul key={item.id} className="flex items-center space-x-44 mx-[278px] mt-4">
-    <li className="text-l font-normal text-black w-[80px]">{item.year}</li>
+<div className="py-4 px-3 -ml-28">
+  <ul key={item.id} className="flex items-center space-x-[174px] mx-[248px] mt-4">
+    <li className="text-l font-normal text-black w-[85px]">{item.year}</li>
     <li className="text-l font-normal text-black w-[80px]">{item.vehicle_model}</li>
     <li className="text-l font-normal text-black w-[140px]">{item.chassis_number}</li>
     <li className="text-l font-normal text-black w-[90px]">{item.emission_value}</li>
@@ -73,18 +79,19 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     {/* vehicles lists */}
 {/* pagination */}
 <div className="flex justify-center mt-4">
-        <p className="absolute mr-[83em] mt-3">Page {currentPage} of {totalPages}</p>
+        <p className="absolute mr-[83em] mt-4 -ml-36">Page {currentPage} of {totalPages}</p>
         <button
           onClick={() => setCurrentPage((prev) => prev > 1 ? prev - 1 : prev)} disabled={currentPage === 1}
-          className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl -ml-52 mt-2"> Previous</button>
+          className="text-gray text-md px-10 py-2  bg-gray-300 rounded-xl -ml-44 mt-3"> Previous</button>
 
         <button
           onClick={() => setCurrentPage((prev) => prev + 1)} disabled={currentPage * itemsPerPage >= (vehicles?.length || 0)}
-           className="text-white text-md px-10 py-2  bg-darkGreen rounded-xl ml-14 mt-2"> Next</button>
+           className="text-white text-md px-10 py-2  bg-darkGreen rounded-xl ml-14 mt-3"> Next</button>
       </div>
 {/* pagination */}
       </div> 
-</div>  
+</div> 
+   </Layout>
 
     )
 }

@@ -5,6 +5,7 @@ import { Chart } from 'chart.js';
 import React from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '../component/Sidebar';
+import Layout from '../component/Layout';
 
 
 
@@ -53,7 +54,8 @@ function CarbonEmitted() {
   return (
     <>
      
-      <h1 className="text-center mt-24  mx-auto  text-3xl font-semibold">
+     <Layout>
+     <h1 className="text-center mt-24  mx-auto  text-3xl font-semibold">
       Carbon emitted and carbon limit against time
       </h1>
       <div className="w-[1200px] h-[600px] flex mx-auto my-auto" >
@@ -61,8 +63,10 @@ function CarbonEmitted() {
           <canvas id="myChart" className="w-full h-full"></canvas>
         </div>
       </div>
+     </Layout>
     </>
   );
 }
 
 export default CarbonEmitted;
+
