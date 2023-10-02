@@ -10,7 +10,7 @@ export interface VehicleLists{
     year: string,
 };
 
-export const usegetVehicles = () => {
+function UsegetVehicles () {
     const [vehicles, setVehicles] = useState<VehicleLists[]>([]);
 
     useEffect(()=>{
@@ -30,7 +30,7 @@ fetchVehicles();
     },[])
     return vehicles
 }
-
+export default UsegetVehicles
 
 
 

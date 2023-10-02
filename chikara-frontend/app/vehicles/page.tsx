@@ -1,58 +1,29 @@
 'use client'
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { ImSearch } from 'react-icons/im';
-import { usegetVehicles, VehicleLists} from "../hooks/useget-vehicles";
+import UsegetVehicles from "../hooks/useget-vehicles";
 
-
-interface SearchBarProps {
-  searchInput: string;
-  setSearchInput: (value: string) => void;
-  placeholder?: string;
-}
-
-const Vehicles: React.FC<SearchBarProps> = ({ searchInput, setSearchInput, placeholder = 'Search for class by name...' }) => {
-  const vehicles = usegetVehicles();
- console.log("myVehicles",{vehicles});
-//  console.log(Array.isArray(vehicles));
-
-//  let veh = Object.values(vehicles);
-//  console.log(Array.isArray(veh));
-
- const [selectedYear, setSelectedYear] = useState<string | null>(null);
+const Vehicles = () => {
+  const vehicles = UsegetVehicles();
  const [searchQuery, setSearchQuery] = useState("");
 const [currentPage, setCurrentPage] = useState(1);
 const itemsPerPage = 4; 
 
 // search event
-// filter vehicles data by month
-// const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
-//     vehicle?.vehicle_model?.toLowerCase().includes(searchQuery.toLowerCase())
-//   );
-
 const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
   vehicle && vehicle.vehicle_model
     ? vehicle.vehicle_model.toLowerCase().includes(searchQuery.toLowerCase())
     : false
 );
-  // console.log(Object.values(vehicles).filter(user => user.id ));
-
     // search event
     const handleSearch = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchQuery(event.target.value)};
-// filter vehicles data by month
-// filter vehicles data by year
-
-// pages
-const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
-
-// filter
-
-// filter
+    const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
 // search
     return (
       <div className="w-full">
 {/* search */}
-    <div className="relative mt-20 ml-40">
+    <div className="relative mt-20 ml-36">
       <input type="text" placeholder="Search..."
              className="py-4 pl-10 pr-80 border rounded-lg border-black font-light focus:outline-none"
              value={searchQuery} onChange={handleSearch} />
@@ -63,9 +34,8 @@ const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
 {/* search */}
 <div  className="p-4 max-w-xxl mx-auto bg-white border-customGreen mt-20">
 <div className="w-full">
-   <div className="flex items-left mb-10 pl-48 -ml-[180px]">
+   <div className="flex items-left mb-10 pl-48 -ml-[185px]">
       <h1 className="font-black text-customGreen text-left text-2xl ml-32">All Cars</h1>
-
 
 </div>
 <div className="items-center justify-center -ml-48">
@@ -85,7 +55,7 @@ const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
         { filteredVehicles.length > 0  ? (
           filteredVehicles.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage).map((item) => (
 
-    <div className="">
+<div key={item.id}>
 <div className="py-4 px-3 -ml-40">
   <ul key={item.id} className="flex items-center space-x-44 mx-[278px] mt-4">
     <li className="text-l font-normal text-black w-[80px]">{item.year}</li>

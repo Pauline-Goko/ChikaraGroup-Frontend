@@ -1,4 +1,5 @@
 "use client"
+import Image from 'next/image';
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import 'tailwindcss/tailwind.css';
@@ -64,7 +65,7 @@ const Login = () => {
     <div className="grid grid-cols-1 md:grid-cols-2 h-screen" style={{ marginLeft: '1px'}}>
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
-          <img src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" />
+          <Image src="/Assets/backgrounds.png" alt="harry" className="w-full h-full object-cover" width={2937} height={3319} />
         </div>
       </div>
 
