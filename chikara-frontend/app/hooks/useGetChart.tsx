@@ -23,3 +23,7 @@ const useGetChart = () => {
   };
   
 export default useGetChart;
+
+
+
+
