@@ -1,6 +1,4 @@
-
-
-export const useLoginUser = async (credentials: any) => {
+export const UseLoginUser = async (credentials: any) => {
   try {
     const response = await fetch('/api/login-user', {
       method: 'POST',
@@ -9,9 +7,10 @@ export const useLoginUser = async (credentials: any) => {
       },
       body: JSON.stringify(credentials),
     });
-
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
     const responseData = await response.json();
-
     return responseData;
   } catch (error) {
     console.error('Error:', error);

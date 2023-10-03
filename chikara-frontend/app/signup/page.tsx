@@ -1,11 +1,10 @@
 "use client"
 import React, { useState } from 'react';
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
-import { useCreateUser } from '../hooks/useCreateUser';
+import { UseCreateUser } from '../hooks/useCreateUser';
 import Link from 'next/link';
-
-
-
+import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 const SignUp: React.FC = () => {
   const [user, setUser] = useState({
     description: '',
@@ -20,10 +19,7 @@ const SignUp: React.FC = () => {
   const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
-
-
-
+  const router = useRouter()
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setUser({
@@ -33,24 +29,16 @@ const SignUp: React.FC = () => {
   };
   const handleSubmit = async () => {
     const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
-
     if (isAnyFieldEmpty) {
       setResponse('Please fill out all fields.');
       return;
     }
-
     try {
       setResponse('Registration successful...');
-
-
       await new Promise((resolve) => setTimeout(resolve,2000));
-
-      const result = await useCreateUser(user);
+      const result = await UseCreateUser(user);
       if (result.success) {
         setResponse('Signup successful');
-
-
-      
       } else {
         setResponse(result.error);
       }
@@ -58,8 +46,8 @@ const SignUp: React.FC = () => {
       console.error('Error:', error);
       setResponse('Error occurred. Please check the console for details.');
     }
+    router.push('/login');
   };
-
   const togglePasswordVisibility = (field: string) => {
     if (field === 'password') {
       setShowPassword(!showPassword);
@@ -68,25 +56,24 @@ const SignUp: React.FC = () => {
     }
   };
   const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
-
   return (
     <div className="w-full h-screen flex flex-col sm:flex-row">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
         <div className="absolute inset-0">
-          <img
+          <Image
             src="/Assets/backgrounds.png"
             alt="Background"
             className="w-full h-full object-cover"
+            width={1500}
+            height={1500}
           />
         </div>
       </div>
-
-      <div className="w-full sm:w-1/2 bg-[#f5f5f5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left mr-40">
+      <div className="w-full sm:w-1/2 bg-[#F5F5F5] flex flex-col items-center justify-center p-4 sm:p-20 px-4 text-center sm:text-left mr-40">
         <h1 className="mt-4 -mr-6 mb-4 sm:mb-8 text-2xl sm:text-4xl font-poppins text-black">
           <span className="font-extrabold">Welcome to</span>{' '}
           <span className="text-teal-300 font-Gugi">Ecobasi</span>
         </h1>
-
         <div className="mb-2">
           <label htmlFor="description" className="block text-gray-700 font-medium font-Poppins">
             Description:
@@ -98,10 +85,8 @@ const SignUp: React.FC = () => {
             value={user.description}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="company_id" className="block text-gray-700 font-medium font-Poppins">
             Company ID:
@@ -113,10 +98,8 @@ const SignUp: React.FC = () => {
             value={user.company_id}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="username" className="block text-gray-700 font-medium font-Poppins">
             Username:
@@ -128,10 +111,8 @@ const SignUp: React.FC = () => {
             value={user.username}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="location" className="block text-gray-700 font-medium font-Poppins">
             Location:
@@ -143,10 +124,8 @@ const SignUp: React.FC = () => {
             value={user.location}
             onChange={handleInputChange}
             className="h-14 px-4 rounded-2xl border-2 border-blue-200 bg-white"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="email" className="block text-gray-700 font-medium font-Poppins">
             Email:
@@ -158,10 +137,8 @@ const SignUp: React.FC = () => {
             value={user.email}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="phone_number" className="block text-gray-700 font-medium font-Poppins">
             Phone Number:
@@ -169,16 +146,13 @@ const SignUp: React.FC = () => {
           <input
             type="text"
             placeholder="start with your code (e.g.,+254)"
-
             id="phone_number"
             name="phone_number"
             value={user.phone_number}
             onChange={handleInputChange}
             className="h-14 px-5 rounded-2xl border-2 border-blue-200 bg-white placeholder-text-sm"
-
           />
         </div>
-
         <div className="mb-2">
           <label htmlFor="password" className="block text-gray-700 font-medium font-Poppins">
             Password:
@@ -201,7 +175,6 @@ const SignUp: React.FC = () => {
             </button>
           </div>
         </div>
-
         <div className="mb-2">
           <label htmlFor="confirmPassword" className="block text-gray-700 font-medium font-Poppins">
             Confirm Password:
@@ -224,11 +197,9 @@ const SignUp: React.FC = () => {
             </button>
           </div>
         </div>
-
         {isAnyFieldEmpty && (
           <p className="text-red-500 font-medium mb-4">Please fill out all the fields before proceeding.</p>
         )}
-
         {isAnyFieldEmpty ? (
           <button
             className="mt-2 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal"
@@ -237,20 +208,14 @@ const SignUp: React.FC = () => {
             Sign Up
           </button>
         ) : (
-          <Link href="/login">
             <button
               onClick={handleSubmit}
               className="mt-2 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal ml-4"
             >
               Sign Up
             </button>
-          </Link>
-
         )}
-
         <div>{response}</div>
-
-
         <p className="mt-4 -mr-12 text-gray-400 text-center font-Poppins text-base sm:text-lg -ml-12 label">
           Already have an account?{' '}
           <Link href="/login">
@@ -261,5 +226,4 @@ const SignUp: React.FC = () => {
     </div>
   );
 };
-
 export default SignUp;

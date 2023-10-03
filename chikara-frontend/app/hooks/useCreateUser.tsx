@@ -1,4 +1,4 @@
-export const useCreateUser = async (user: any) => {
+export const UseCreateUser = async (user: any) => {
   const url= 'api/create-user'
   try {
     if (!url) {
@@ -7,7 +7,6 @@ export const useCreateUser = async (user: any) => {
         message: "Base URL not found",
       };
     }
-
     const response = await fetch(url, {
       method: "POST",
       headers: {
@@ -15,7 +14,6 @@ export const useCreateUser = async (user: any) => {
       },
       body: JSON.stringify(user),
     });
-
     if (response.status === 201) {
       const result = await response.json();
       return {

@@ -1,7 +1,11 @@
+
+"use client"
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';
 import Link from "next/link";
+import Layout from "../Layout";
+
 
 const Sidebar: React.FC = () => {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
@@ -38,7 +42,8 @@ const Sidebar: React.FC = () => {
 
 
   return (
-    <div className={`flex h-screen ${isMobile ? 'md:h-auto' : ''}`} style={{ backgroundColor: '#098081' }}>
+   <Layout>
+     <div className={`flex h-screen ${isMobile ? 'md:h-auto' : ''}`} style={{ backgroundColor: '#098081' }}>
       {isMobile && (
         <button
           className="md:hidden absolute top-4 left-0 bg-teal-400 text- rounded-full p-2"
@@ -115,7 +120,7 @@ const Sidebar: React.FC = () => {
 
           </Link>
 
-          <Link href="/profile">
+          <Link href="/profile/33">
             <li
               onClick={() => handleLinkClick('/profile')}
               className={`flex mt-6 py-4 ml-10 cursor-pointer items-center ${activeLink === '/profile'
@@ -137,6 +142,7 @@ const Sidebar: React.FC = () => {
       </div>
       <div className={`flex-grow bg-white ${isMobile && isSidebarCollapsed ? 'md:w-60' : ''}`} onClick={closeSidebar}></div>
     </div>
+   </Layout>
   );
 };
 export default Sidebar;

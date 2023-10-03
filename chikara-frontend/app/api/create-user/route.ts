@@ -15,12 +15,9 @@ export async function POST(request: Request) {
         },
         body: JSON.stringify(response),
       });
-
       const post = await result.json();
-
       return post;
     });
-
     return new Response(JSON.stringify(posts), {
       status: 201,
       statusText: "Success",
