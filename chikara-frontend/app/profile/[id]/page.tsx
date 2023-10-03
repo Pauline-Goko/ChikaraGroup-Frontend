@@ -50,22 +50,22 @@ const Profile = ({ params: { id } }: { params: { id: number } }) => {
                   <h1 className="text-teal-500 text-xl font-bold mt-4 mb-4">
                     Profile Information
                   </h1>
-                  <p className="text-gray-700 mb-10">
+                  <p className="text-gray-500 mb-10">
                     {userData.description}
                   </p>
-                  <p className="text-gray-700 mb-3 ">
-                    <span className="font-bold">Name:</span> {userData.username}
+                  <p className="text-gray-500 mb-3 ">
+                    <span className="font-bold text-black">Name:</span> {userData.username}
                   </p>
-                  <p className="text-gray-700 mb-3">
-                    <span className="font-bold mb-3">Phone Number: </span> 
+                  <p className="text-gray-500 mb-3">
+                    <span className="font-bold text-black mb-3">Phone Number: </span> 
                     {userData.phone_number}
                   </p>
-                  <p className="text-gray-700 mb-3">
-                    <span className="font-bold ">Email address: </span>
+                  <p className="text-gray-500 mb-3">
+                    <span className="font-bold text-black">Email address: </span>
                     {userData.email}
                   </p>
-                  <p className="text-gray-700 mb-3">
-                    <span className="font-bold">Location: </span>
+                  <p className="text-gray-500 mb-3">
+                    <span className="font-bold text-black">Location: </span>
                     {userData.location}
                   </p>
                 </div>
