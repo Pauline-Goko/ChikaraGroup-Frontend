@@ -121,7 +121,8 @@ const LoginPage: React.FC = () => {
           <div className="mt-4 text-teal-500 font-Poppins text-lg">{response}</div>
         )}
         <p className={`mt-8 -mr-8 text-gray-400 text-center font-Poppins text-lg -ml-28 label`}>
-          Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
+         {/* eslint-disable-next-line react/no-unescaped-entities */}
+        Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
         </p>
 
         <ToastContainer position="top-right" autoClose={3000} />

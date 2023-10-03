@@ -1,3 +1,5 @@
+
+"use client"
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';

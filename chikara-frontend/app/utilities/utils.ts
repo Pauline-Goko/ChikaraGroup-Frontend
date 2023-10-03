@@ -1,3 +1,12 @@
+export const getDetails = async (id: number) => {
+ 
+  const response = await fetch(`/api/get-user/${id}`, {
+    method: "GET",
+  });
+  const result = await response.json();
+  return result;
+} ;
+
 export const getPosts= async()=>{
   const url ='api/get-users'
   try{
@@ -9,8 +18,6 @@ export const getPosts= async()=>{
       return error.message
   }
 }
-
-
 
 export const createUser = async (user: any) => {
   const url= 'api/create-user'
@@ -51,8 +58,6 @@ export const createUser = async (user: any) => {
   }
 };
 
-  
-
 
 export const loginUser = async (user: any) => {
   const url= 'api/login-user'
@@ -88,8 +93,7 @@ export const loginUser = async (user: any) => {
   } catch (error: any) {
     return {
       success: false,
-      message: error.message || "Internal server error",
+      message: error.message || "Internal server error"
     };
   }
 };
-
