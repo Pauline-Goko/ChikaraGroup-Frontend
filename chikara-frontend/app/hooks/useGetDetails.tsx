@@ -21,7 +21,7 @@ export const useGetDetails = (id: number ) => {
         setDetails(detail);
 
     })();
-  }, [id]);
+  }, []);
   return { details };
 };
 
