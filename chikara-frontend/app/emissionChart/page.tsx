@@ -5,6 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation'; 
 import useGetChart from '../hooks/useGetChart';
 import useGetEmissionChart from '../hooks/useGetEmissionChart';
+import Layout from '../component/Layout';
 
 function CarbonEmitted() {
   const router = useRouter();
@@ -53,7 +54,8 @@ function CarbonEmitted() {
   }, [chartData, emissionDataChart]);
 
   return (
-    <>
+    <Layout>
+      <div className="mr-32">
       <h1 className="text-center mx-auto mt-24 text-3xl font-semibold">
         Greenhouse gas emitted and carbon limit against time
       </h1>
@@ -62,7 +64,8 @@ function CarbonEmitted() {
           <canvas id="myChart" className="w-full h-full"></canvas>
         </div>
       </div>
-    </>
+    </div>
+    </Layout>
   );
 }
 

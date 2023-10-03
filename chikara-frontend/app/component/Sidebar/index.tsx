@@ -1,5 +1,6 @@
 
 "use client"
+import Image from "next/image";
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';
@@ -34,7 +35,7 @@ const Sidebar: React.FC = () => {
     <div className={`flex h-screen ${isMobile ? 'md:h-auto' : ''}`} style={{ backgroundColor: '#098081' }}>
       {isMobile && (
         <button
-          className="md:hidden absolute top-4 left-0 bg-teal-400 text-white rounded-full p-2"
+          className="md:hidden absolute top-4 left-0 bg-teal-500 text-white rounded-full p-2"
           onClick={toggleSidebar}
         >
           {isSidebarCollapsed ? (
@@ -45,14 +46,16 @@ const Sidebar: React.FC = () => {
         </button>
       )}
       <div
-        className={`w-1/9 bg-cyan-800 text- flex flex-col md:flex-col ${
+        className={`w-1/9 bg-teal-700 text- flex flex-col md:flex-col ${
           isMobile && isSidebarCollapsed ? 'md:flex-col md:w-20' : ''
         }`}
       >
         <div className="p-4  flex items-center bg-white">
           <div className="relative ">
-            <img
-              src='./assets/Group 2364.png'
+            <Image
+            width={200}
+            height={100}
+              src='/assets/Group 2364.png'
               alt="Logo"
               className={`logo object-contain h-20 ${
                 isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
@@ -61,14 +64,14 @@ const Sidebar: React.FC = () => {
           </div>
         </div>
         <ul className={`p-2 mt-14 ${isSidebarCollapsed ? 'hidden' : ''}`}>
-        <Link href="/limitChart">
+        <Link href="/emissionChart">
         <li
-            onClick={() => handleLinkClick("/LimitChart")}
+            onClick={() => handleLinkClick("/emissionChart")}
             
-            className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/LimitChart" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
+            className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/creditChart" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
           >
             <FaCreditCard className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Credits</span>
+            <span className="list capitalize text-xl ml-2">Emission</span>
           </li>
         </Link>
 
@@ -76,10 +79,10 @@ const Sidebar: React.FC = () => {
         
 
 
-        <Link href="/carbonChart">
-          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
+        <Link href="/creditChart">
+          <li className="flex mt-6 py-4 text-white  ml-10 hover:bg-white hover:text-teal-500 hover:rounded-lg hover:px-9 transition-all duration-300 cursor-pointer items-center">
             <FaCloud className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Emission</span>
+            <span className="list capitalize text-xl ml-2">Credits</span>
           </li>
           </Link>
 
@@ -92,13 +95,13 @@ const Sidebar: React.FC = () => {
             <span className="list capitalize text-xl ml-2">Vehicles</span>
           </li>
           </Link>
-        <Link href="/profile">
+        <Link href="/profile/33">
         <li
             onClick={() => handleLinkClick("/profile")}
             className={`flex mt-6 py-4 text-white ml-10 cursor-pointer items-center ${activeLink === "/profile" ? 'bg-white text-teal-800 rounded-lg px-3' : 'hover:bg-white hover:text-teal-800 hover:rounded-lg hover:px-3 transition-all duration-300'}`}
           >
             <FaUser className={`text-white mr-2 ${isSidebarCollapsed ? 'md:w-20 md:h-20' : ''}`} />
-            <span className="list capitalize text-xl ml-2">Profiles</span>
+            <span className="list capitalize text-xl ml-2">Profile</span>
           </li>
         </Link>
         </ul>

@@ -19,6 +19,12 @@ export const getPosts= async()=>{
   }
 }
 
+export const getVehicles= async()=>{
+  const url ='api/get-vehicles'
+      const response = await fetch(url)
+      const result = await response.json();
+      return result;
+  }
 export const createUser = async (user: any) => {
   const url= 'api/create-user'
   try {
@@ -97,3 +103,49 @@ export const loginUser = async (user: any) => {
     };
   }
 };
+
+
+export const getChart = async () => {
+  const url = `/api/get-charts`
+  try {
+    const response = await fetch(url);
+    if (!response.ok) {
+      throw new Error('Page not found');
+    }
+    const result = await response.json();
+    return result;
+  } catch (error:any) {
+    throw new error.message;
+  }
+};
+export const getEmissionChart = async () => {
+  const url = `/api/get-emission-chart`
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error('Page not found');
+      }
+      const result = await response.json();
+      return result;
+    } catch (error:any) {
+      throw new Error(error.message);
+    }
+  };
+export const getCreditChart = async () => {
+    const url = `/api/get-credits-chart`
+      try {
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error('Page not found');
+        }
+        const result = await response.json();
+        return result;
+      } catch (error:any) {
+        throw new Error(error.message);
+      }
+    };
+
+
+
+
+
