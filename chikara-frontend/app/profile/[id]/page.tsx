@@ -21,7 +21,7 @@ const Profile = ({ params: { id } }: { params: { id: number } }) => {
       <div className="container mx-auto py-8">
         <div className="lg:flex ">
           {userData && (
-            <div className="lg:w-1/2">
+            <div className="lg:w-4/4">
               <div className="profile-pic relative">
                 <Image
                 width={150}
@@ -57,15 +57,15 @@ const Profile = ({ params: { id } }: { params: { id: number } }) => {
                     <span className="font-bold">Name:</span> {userData.username}
                   </p>
                   <p className="text-gray-700 mb-3">
-                    <span className="font-bold mb-3">Phone Number:</span>
+                    <span className="font-bold mb-3">Phone Number: </span> 
                     {userData.phone_number}
                   </p>
                   <p className="text-gray-700 mb-3">
-                    <span className="font-bold ">Email address:</span>
+                    <span className="font-bold ">Email address: </span>
                     {userData.email}
                   </p>
                   <p className="text-gray-700 mb-3">
-                    <span className="font-bold">Location:</span>
+                    <span className="font-bold">Location: </span>
                     {userData.location}
                   </p>
                 </div>
