@@ -39,8 +39,10 @@ const SignUp: React.FC = () => {
       const result = await UseCreateUser(user);
       if (result.success) {
         setResponse('Signup successful');
-      } else {
-        setResponse(result.error);
+      } else if (result.message){{
+        setResponse(result.message)
+      }
+        setResponse('Please input correct details');
       }
     } catch (error:any) {
       console.error('Error:', error);
@@ -57,15 +59,15 @@ const SignUp: React.FC = () => {
   };
   const isAnyFieldEmpty = Object.values(user).some((value) => value === '');
   return (
-    <div className="w-full h-screen flex flex-col sm:flex-row">
+    <div className="w-full h-screen flex flex-col sm:flex-row mr-60" >
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
-        <div className="absolute inset-0">
+        <div className="inset-0">
           <Image
             src="/Assets/backgrounds.png"
             alt="Background"
             className="w-full h-full object-cover"
-            width={1500}
-            height={1500}
+            width={1000}
+            height={1000}
           />
         </div>
       </div>

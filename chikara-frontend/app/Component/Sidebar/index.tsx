@@ -1,5 +1,6 @@
 
 "use client"
+import Image from "next/image";
 import "tailwindcss/tailwind.css";
 import React, { useState, useEffect } from 'react';
 import { FaCreditCard, FaHome, FaUser, FaBars, FaTimes, FaBus, FaCloud } from 'react-icons/fa';
@@ -62,11 +63,11 @@ const Sidebar: React.FC = () => {
       >
         <div className="p-4  flex items-center bg-white">
           <div className="relative ">
-            <img
+            <Image
               src='./assets/Group 2364.png'
               alt="Logo"
               className={`logo object-contain h-20 ${isSidebarCollapsed ? 'md:w-20 md:h-20 ' : ''
-                }`}
+                }`} width={283} height={99}
             />
           </div>
         </div>

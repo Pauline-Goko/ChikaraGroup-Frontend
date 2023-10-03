@@ -1,8 +1,8 @@
 'use client';
-import React, { useState, useEffect, ChangeEvent } from "react";
+import React, { useState } from "react";
 import { ImSearch } from 'react-icons/im';
 import UsegetVehicles from "../hooks/usegetVehicles";
-import Layout from "../component/Layout";
+import Layout from "../Component/Layout";
 
 const Vehicles = () => {
   const vehicles = UsegetVehicles();
@@ -19,11 +19,8 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     // search event
     const handleSearch = (event: { target: { value: React.SetStateAction<string>; }; }) => {
     setSearchQuery(event.target.value)};
-    
     const totalPages = Math.ceil((vehicles?.length || 0) / itemsPerPage);
 // search
-
-
 
     return (
    <Layout>
@@ -43,7 +40,6 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
    <div className="flex items-left mb-10 pl-48 -ml-[185px]">
       <h1 className="font-black text-customGreen text-left text-2xl ml-36">All Cars</h1>
 </div>
-
 <div className="items-center justify-center ">
 <ul className="flex items-center mt-4 space-x-44 ml-36">
   <li className="text-xl font-semibold text-black ">Year</li>
@@ -91,8 +87,7 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
 {/* pagination */}
       </div> 
 </div> 
-   </Layout>
-
+  </Layout>
     )
 }
 

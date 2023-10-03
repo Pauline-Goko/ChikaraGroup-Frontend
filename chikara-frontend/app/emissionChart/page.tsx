@@ -5,7 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation'; 
 import useGetChart from '../hooks/useGetChart';
 import useGetEmissionChart from '../hooks/useGetEmissionChart';
-import Layout from '../component/Layout';
+import Layout from '../Component/Layout';
 
 function CarbonEmitted() {
   const router = useRouter();
@@ -65,7 +65,7 @@ function CarbonEmitted() {
         </div>
       </div>
     </>
-    </Layout>
+   </Layout>
    
   );
 }

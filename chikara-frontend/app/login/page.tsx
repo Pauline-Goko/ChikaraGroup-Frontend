@@ -7,13 +7,14 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 const LoginPage: React.FC = () => {
-  const router=useRouter();
+ 
   const [credentials, setCredentials] = useState({
     email: '',
     password: '',
   });
   const [response, setResponse] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
+  const router=useRouter();
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setCredentials({
@@ -25,7 +26,7 @@ const LoginPage: React.FC = () => {
     try {
       const responseData = await UseLoginUser(credentials);
       setResponse('Logging in...');
-      await new Promise((resolve) => setTimeout(resolve, 2000));
+    
       if (responseData.success) {
         setResponse("You have logged in successfully");
       } else {
@@ -45,13 +46,12 @@ const LoginPage: React.FC = () => {
   return (
     <div className="w-full h-screen flex flex-col sm:flex-row">
       <div className="sm:flex w-1/2 relative flex items-center justify-center">
-        <div className="absolute inset-0">
-        <Image
+        <div className=" inset-0">
+          <Image
             src="/Assets/backgrounds.png"
             alt="Background"
             className="w-full h-full object-cover"
-            width={200}
-            height={300}
+            width={2937} height={3319}
           />
         </div>
       </div>
@@ -94,19 +94,23 @@ const LoginPage: React.FC = () => {
             </button>
           </div>
         </div>
-        <button onClick={handleSubmit } className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 " >
-          Login
+        
+        <button onClick={handleSubmit } className="mt-8 bg-[#0C8283] text-white py-2 rounded-lg w-[228px] h-[45px] hover:bg-opacity-60 focus:outline-none focus:bg-opacity-80 text-lg font-Poppins font-normal -ml-12 "  >
+           <a href='/emissionChart'> Login</a>
         </button>
+      
         {response && (
           <div className="mt-4 text-teal-500 font-Poppins text-lg">{response}</div>
         )}
         <p className={`mt-8 -mr-8 text-gray-400 text-center font-Poppins text-lg -ml-28 label`}>
-          Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
+         {/* eslint-disable-next-line react/no-unescaped-entities */}
+        Don't have an account? <a href="/signup" className={`text-teal-300 font-bold label`}>Sign Up</a>
         </p>
         <ToastContainer position="top-right" autoClose={3000} />
       </div>
     </div>
   );
+
 };
 export default LoginPage;
 

@@ -5,7 +5,7 @@ import React from 'react';
 import { useRouter } from 'next/navigation';
 import useGetCarbonCreditsChart from '../hooks/useGetCredits';
 import useGetChart from '../hooks/useGetChart';
-import Layout from '../component/Layout';
+import Layout from '../Component/Layout';
 
 function CarbonCredits() {
   const router = useRouter();
