@@ -1,7 +1,7 @@
 'use client';
 import React, { useState, useEffect, ChangeEvent } from "react";
 import { ImSearch } from 'react-icons/im';
-import UsegetVehicles from "../hooks/useget-vehicles";
+import UsegetVehicles from "../hooks/usegetVehicles";
 import Layout from "../component/Layout";
 
 const Vehicles = () => {
@@ -45,7 +45,7 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
 </div>
 
 <div className="items-center justify-center ">
-<ul className="flex items-center mt-4 space-x-48 ml-36">
+<ul className="flex items-center mt-4 space-x-44 ml-36">
   <li className="text-xl font-semibold text-black ">Year</li>
   <li className="text-xl font-semibold text-black ">Model</li>
   <li className="text-xl font-semibold text-black ">Chassis Number</li>
@@ -54,7 +54,7 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
 </ul>
 </div>
   </div>
-  <div className=" inset-x-0 bottom-0 h-0.5 w-5/6 bg-darkGreen my-4 ml-16" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
+  <div className=" inset-x-0 bottom-0 h-px w-5/6 bg-darkGreen my-4 ml-20" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
 
     {/* vehicles lists */}
     <div >
@@ -67,11 +67,11 @@ const filteredVehicles = Object.values(vehicles).filter((vehicle) =>
     <li className="text-l font-normal text-black w-[65px]">{item.year}</li>
     <li className="text-l font-normal text-black w-[80px]">{item.vehicle_model}</li>
     <li className="text-l font-normal text-black w-[170px]">{item.chassis_number}</li>
-    <li className="text-l font-normal text-black w-[150px]">{item.emission_value}</li>
+    <li className="text-l font-normal text-black w-[120px]">{item.emission_value}</li>
 <li className="text-l font-normal text-black">{item.engine_type}</li>
   </ul>
 </div>
-<div className=" inset-x-0 bottom-0 h-0.5 w-5/6 bg-darkGreen my-4 ml-16" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
+<div className=" inset-x-0 bottom-0 h-px w-5/6 bg-darkGreen my-4 ml-20" style={{ boxShadow: "0px 1px 4px rgba(3, 88, 82, 0.5)" }}></div>     
     </div>))) : (
           <p>Loading...</p>
         )}
